@@ -10,17 +10,19 @@ instructions below to clone these tools into your galaxy instance.
 
 CONTENTS
 
-galaxy: Contains tool configuration files in *.xml format. 
+Tool configuration files in *.xml format. 
 
-    Tool configuration files. Please add right path to locate the scripts.
+    gtf_to_gff.xml
+    gff_to_gtf.xml
+    bed_to_gff.xml
+    gff_to_bed.xml
 
-    gtf_to_gff3.xml
+Python based scripts. 
 
-    gff3_to_gtf.xml
-
-    bed_to_gff3.xml
-
-    gff3_to_bed.xml
+    gtf_to_gff_converter.py: converts data from GTF format to valid GFF3 format.
+    gff_to_gtf_converter.py: converts data from GFF3 format to GTF format.
+    bed_to_gff_converter.py: converts data from a 12 column UCSC wiggle BED format to GFF3 format.
+    gff_to_bed_converter.py: converts gene transcript annotation from GFF3 format to UCSC wiggle 12 column BED format.
 
 t: Test data set. (move to your galaxy_root_folder/test-data/)
     
@@ -29,16 +31,6 @@ t: Test data set. (move to your galaxy_root_folder/test-data/)
 
     exmaple: 
     sh run_functional_tests.sh -id fml_gtf2gff3
-
-scripts: Python based and Perl based scripts. 
-
-    gtf_to_gff3_converter.py: converts data from GTF format to valid GFF3 format.
-    
-    gff3_to_gtf_converter.pl: converts data from GFF3 format to GTF format.
-
-    bed_to_gff3_converter.py: converts data from a 12 column UCSC wiggle BED format to GFF3 format.
-
-    gff3_to_bed_converter.py: converts gene transcript annotation from GFF3 format to UCSC wiggle 12 column BED format.
 
 REQUIREMENTS
 
