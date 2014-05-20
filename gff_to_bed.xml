@@ -1,0 +1,83 @@
+<tool id="fml_gff2bed" name="GFF-to-BED" version="2.0.0">
+	<description>converter</description> 
+	<command interpreter="python">gff_to_bed_converter.py $inf_gff > $bed_format 
+	</command> 
+	<inputs>
+  		<param format="gff3" name="inf_gff" type="data" label="Genome annotation file in GFF3 format" help="Please look at About format section."/>
+    </inputs>
+  	<outputs>
+  		<data format="bed" name="bed_format" label="${tool.name} on ${on_string}: Converted" /> 
+  	</outputs>
+	<tests>
+        <test>
+                <param name="inf_gff" value="Aly_JGI.gff3" />
+                <output name="bed_format" file="Aly_JGI.bed" />
+        </test>
+        <test>
+                <param name="inf_gff" value="MB7_3R.gff3" />
+                <output name="bed_format" file="MB7_3R.bed" />
+        </test>
+        </tests>
+  	<help>
+
+**What it does**
+
+This tool converts gene transcript annotation from GFF3 format to UCSC wiggle 12 column BED format.
+
+--------
+
+**Example**
+
+- The following data in GFF3 format::
+
+	##gff-version 3
+	chr1    protein_coding  gene    11874   14409   0       +       .       ID=Gene:uc001aaa.3;Name=Gene:uc001aaa.3
+	chr1    protein_coding  transcript      11874   14409   0       +       .       ID=uc001aaa.3;Name=uc001aaa.3;Parent=Gene:uc001aaa.3
+	chr1    protein_coding  exon    11874   12227   0       +       .       Parent=uc001aaa.3
+	chr1    protein_coding  exon    12613   12721   0       +       .       Parent=uc001aaa.3
+	chr1    protein_coding  exon    13221   14409   0       +       .       Parent=uc001aaa.3
+
+- Will be converted to UCSC Wiggle BED format::
+
+	chr1    11874   14409   uc001aaa.3      0       +       11874   14409   0       3       354,109,1189,   0,739,1347,
+
+--------
+
+**About formats**
+
+**GFF3 format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields:
+
+	1. seqid - Must be a chromosome or scaffold or contig.
+	2. source - The program that generated this feature.
+	3. type - The name of this type of feature. Some examples of standard feature types are "gene", "CDS", "protein", "mRNA", and "exon". 
+	4. start - The starting position of the feature in the sequence. The first base is numbered 1.
+	5. stop - The ending position of the feature (inclusive).
+	6. score - A score between 0 and 1000. If there is no score value, enter ".".
+	7. strand - Valid entries include '+', '-', or '.' (for don't know/care).
+	8. phase - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base. If the feature is not a coding exon, the value should be '.'.
+	9. attributes - All lines with the same group are linked together into a single item.
+
+**BED format** Browser Extensible Data format was designed at UCSC for displaying data tracks in the Genome Browser. It has three required fields and several additional optional ones:
+
+The first three BED fields (required) are::
+
+    1. chrom - The name of the chromosome (e.g. chr1, chrY_random).
+    2. chromStart - The starting position in the chromosome. (The first base in a chromosome is numbered 0.)
+    3. chromEnd - The ending position in the chromosome, plus 1 (i.e., a half-open interval).
+
+The additional BED fields (optional) are::
+
+    4. name - The name of the BED line.
+    5. score - A score between 0 and 1000.
+    6. strand - Defines the strand - either '+' or '-'.
+    7. thickStart - The starting position where the feature is drawn thickly at the Genome Browser.
+    8. thickEnd - The ending position where the feature is drawn thickly at the Genome Browser.
+    9. reserved - This should always be set to zero.
+   10. blockCount - The number of blocks (exons) in the BED line.
+   11. blockSizes - A comma-separated list of the block sizes. The number of items in this list should correspond to blockCount.
+   12. blockStarts - A comma-separated list of block starts. All of the blockStart positions should be calculated relative to chromStart. The number of items in this list should correspond to blockCount.
+
+--------
+
+	</help>
+</tool>
