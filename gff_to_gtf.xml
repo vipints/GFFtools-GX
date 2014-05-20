@@ -1,0 +1,82 @@
+<tool id="fml_gff3togtf" name="GFF-to-GTF" version="2.0.0">
+	<description>converter</description> 
+	<command interpreter="python">gff_to_gtf_converter.py $inf_gff3 $gtf_format
+	</command> 
+	<inputs>
+  		<param format="gff3" name="inf_gff3" type="data" label="File in GFF3 format" help="GFF3 format file for converting to GTF."/>
+        </inputs>
+  	<outputs>
+  		<data format="gtf" name="gtf_format" label="${tool.name} on ${on_string}: Converted" /> 
+  	</outputs>
+	<tests>
+        <test>
+                <param name="inf_gff3" value="AceView_ncbi_37.gff3" />
+                <output name="gtf_format" file="AceView_gff3_to_gtf.gtf" />
+        </test>
+        <test>
+                <param name="inf_gff3" value="ENSEMBL_mm9.gff3" />
+                <output name="gtf_format" file="ENSEMBL_mm9_gff3_to_gtf.gtf" />
+        </test>
+    </tests>
+  	<help>
+
+**What it does**
+
+This tool converts data from GFF3 format to GTF format.
+
+--------
+
+**Example**
+
+- The following data in GFF3 format::
+
+	##gff-version 3
+	17      protein_coding  gene    7255208 7258258 .       +       .       ID=ENSG00000213859;Name=KCTD11
+	17      protein_coding  mRNA    7255208 7258258 .       +       .       ID=ENST00000333751;Name=KCTD11-001;Parent=ENSG00000213859
+	17      protein_coding  protein 7256262 7256960 .       +       .       ID=ENSP00000328352;Name=KCTD11-001;Parent=ENST00000333751
+	17      protein_coding  five_prime_UTR  7255208 7256261 .       +       .       Parent=ENST00000333751
+	17      protein_coding  CDS     7256262 7256960 .       +       0       Name=CDS:KCTD11;Parent=ENST00000333751,ENSP00000328352
+	17      protein_coding  three_prime_UTR 7256961 7258258 .       +       .       Parent=ENST00000333751
+	17      protein_coding  exon    7255208 7258258 .       +       .       Parent=ENST00000333751
+
+- Will be converted to GTF format::
+
+	17      protein_coding  exon    7255208 7258258 .       +       .        gene_id "ENSG00000213859"; transcript_id "ENST00000333751"; exon_number "1"; gene_name "KCTD11"; transcript_name "KCTD11-001";
+	17      protein_coding  CDS     7256262 7256957 .       +       0        gene_id "ENSG00000213859"; transcript_id "ENST00000333751"; exon_number "1"; gene_name "KCTD11"; transcript_name "KCTD11-001"; protein_id "ENSP00000328352";
+	17      protein_coding  start_codon     7256262 7256264 .       +       0        gene_id "ENSG00000213859"; transcript_id "ENST00000333751"; exon_number "1"; gene_name "KCTD11"; transcript_name "KCTD11-001";
+	17      protein_coding  stop_codon      7256958 7256960 .       +       0        gene_id "ENSG00000213859"; transcript_id "ENST00000333751"; exon_number "1"; gene_name "KCTD11"; transcript_name "KCTD11-001";
+
+--------
+
+**About formats**
+
+
+**GFF3 format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields:
+
+    1. seqid - Must be a chromosome or scaffold.
+    2. source - The program that generated this feature.
+    3. type - The name of this type of feature. Some examples of standard feature types are "gene", "CDS", "protein", "mRNA", and "exon". 
+    4. start - The starting position of the feature in the sequence. The first base is numbered 1.
+    5. stop - The ending position of the feature (inclusive).
+    6. score - A score between 0 and 1000. If there is no score value, enter ".".
+    7. strand - Valid entries include '+', '-', or '.' (for don't know/care).
+    8. phase - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base. If the feature is not a coding exon, the value should be '.'.
+    9. attributes - All lines with the same group are linked together into a single item.
+
+
+**GTF format** Gene Transfer Format, it borrows from GFF, but has additional structure that warrants a separate definition and format name. GTF lines have nine tab-seaparated fields:
+
+    1. seqname - The name of the sequence.
+    2. source - This indicating where the annotation came from.
+    3. feature - The name of the feature types. The following feature types are required: 'CDS', 'start_codon' and 'stop_codon'
+    4. start - The starting position of the feature in the sequence. The first base is numbered 1.
+    5. end - The ending position of the feature (inclusive).
+    6. score - The score field indicates a degree of confidence in the feature's existence and coordinates.
+    7. strand - Valid entries include '+', '-', or '.'
+    8. frame - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base.
+    9. attributes - These attributes are designed for handling multiple transcripts from the same genomic region.
+
+--------
+
+	</help>
+</tool>
