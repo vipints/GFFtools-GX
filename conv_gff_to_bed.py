@@ -14,6 +14,7 @@ def writeBED(tinfo):
     """
     writing result files in bed format 
     """
+
     for ent1 in tinfo:
         for idx, tid in enumerate(ent1['transcripts']):
             exon_cnt = len(ent1['exons'][idx])
@@ -22,13 +23,13 @@ def writeBED(tinfo):
             rel_start = None 
             rel_stop = None 
             for idz, ex_cod in enumerate(ent1['exons'][idx]):#check for exons of corresponding transcript  
-                exon_len += str(int(ex_cod[1])-int(ex_cod[0])+1) + ','
+                exon_len += '%d,' % (ex_cod[1]-ex_cod[0]+1)
                 if idz == 0: #calculate the relative start position 
                     exon_cod += '0,'
                     rel_start = int(ex_cod[0])
-                    rel_stop = int(ex_cod[1])
+                    rel_stop = ex_cod[1]
                 else:
-                    exon_cod += str(int(ex_cod[0])-rel_start) + ','
+                    exon_cod += '%d,' % (ex_cod[0]-rel_start)
                     rel_stop = int(ex_cod[1])
             
             if exon_len:
