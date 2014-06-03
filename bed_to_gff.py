@@ -1,49 +1,61 @@
 #!/usr/bin/env python
+"""
+Convert genome annotation data in a 12 column BED format to GFF3. 
+BED format typically represents the transcript models. 
 
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# (at your option) any later version.
-#
-# Written (W) 2010 Vipin T Sreedharan, Friedrich Miescher Laboratory of the Max Planck Society
-# Copyright (C) 2010 Max Planck Society
-#
-# Description : Convert a BED format file to GFF3 format
+Usage: python bed_to_gff.py in.bed > out.gff
+"""
 
-import re, sys
+import re
+import sys
+import helper 
 
 def __main__():
 
     try:
-        bed_fh = open(sys.argv[1], 'rU')
+        bed_fname = sys.argv[1]
     except:
-        sys.stderr.write('BED format file fail to open, Cannot continue...\n')
-        sys.stderr.write('USAGE: bed_to_gff3_converter.py <bed file> > *.gff3\n')
+        print __doc__
         sys.exit(-1)
-    print '##gff-version 3'
+
+    bed_fh = helper.open_file(bed_fname)
+
     for line in bed_fh: 
-        line = line.strip( '\n\r' ).split( '\t' )
-        if re.match('#', line[0]):continue
-        if len(line) != 12: # considering BED lines with 12 fields
-            line = '\t'.join(line)
-            sys.stdout.write('Warning: Invalid BED line found- ' + line + '\n') 
-            continue
-        if len(line[-1].split(',')) != len(line[-2].split(',')):continue # checking the consistency b/w relative start of exon and its length
-        rstart = line[-1].split(',')
-        if rstart[-1] == '': rstart.pop()
-        exon_len = line[-2].split(',')
-        if exon_len[-1] == '': exon_len.pop()
-        if len(rstart) != int(line[-3]): continue # checking the number of exons and block count are same
-        if line[5] != '+' and line[5] != '-':line[5] = '.' # replace the unknown starnd with '.' 
-        # write feature lines to the result file 
-        print line[0] + '\tbed2gff\tgene\t' + str(int(line[1]) + 1) + '\t' + line[2] + '\t' + line[4] + '\t' + line[5] + '\t.\t' + 'ID=Gene:' + line[3] + ';Name=Gene:' + line[3] 
-        print line[0] + '\tbed2gff\ttranscript\t' + str(int(line[1]) + 1) + '\t' + line[2] + '\t' + line[4] + '\t' + line[5] + '\t.\t' + 'ID=' + line[3] + ';Name=' + line[3] + ';Parent=Gene:' + line[3]
-        st = int(line[1])
-        for ex_cnt in range(int(line[-3])):
-            start = st + int(rstart[ex_cnt]) + 1
-            stop = start + int(exon_len[ex_cnt]) - 1
-            print line[0] + '\tbed2gff\texon\t' + str(start) + '\t' + str(stop) + '\t' + line[4] + '\t' + line[5] + '\t.\t' + 'Parent=' + line[3]
+        line = line.strip( '\n\r' )
+
+        if not line or line[0] in  ['#']:
+            continue 
+
+        parts = line.split('\t') 
+        assert len(parts) >= 12, line
+
+        rstarts = parts[-1].split(',')
+        rstarts.pop() if rstarts[-1] == '' else rstarts
+
+        exon_lens = parts[-2].split(',')
+        exon_lens.pop() if exon_lens[-1] == '' else exon_lens
+        
+        if len(rstarts) != len(exon_lens):
+            continue # checking the consistency col 11 and col 12 
+
+        if len(rstarts) != int(parts[-3]): 
+            continue # checking the number of exons and block count are same
+        
+        if not parts[5] in ['+', '-']:
+            parts[5] = '.' # replace the unknown strand with '.' 
+
+        # bed2gff result line 
+        print '%s\tbed2gff\tgene\t%d\t%s\t%s\t%s\t.\tID=Gene:%s;Name=Gene:%s' % (parts[0], int(parts[1])+1, parts[2], parts[4], parts[5], parts[3], parts[3])
+        print '%s\tbed2gff\ttranscript\t%d\t%s\t%s\t%s\t.\tID=Gene:%s;Name=%s;Parent=Gene:%s' % (parts[0], int(parts[1])+1, parts[2], parts[4], parts[5], parts[3], parts[3], parts[3])
+
+        st = int(parts[1])
+        for ex_cnt in range(int(parts[-3])):
+            start = st + int(rstarts[ex_cnt]) + 1
+            stop = start + int(exon_lens[ex_cnt]) - 1
+            print '%s\tbed2gff\texon\t%d\t%d\t%s\t%s\t.\tParent=%s' % (parts[0], start, stop, parts[4], parts[5], parts[3])
+
     bed_fh.close()
 
-if __name__ == "__main__": __main__()
+
+if __name__ == "__main__": 
+    __main__()
