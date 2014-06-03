@@ -1,6 +1,6 @@
 <tool id="fml_gff2bed" name="GFF-to-BED" version="2.0.0">
 	<description>converter</description> 
-	<command interpreter="python">gff_to_bed_conv.py $inf_gff > $bed_format 
+	<command interpreter="python">gff_to_bed.py $inf_gff > $bed_format 
 	</command> 
 	<inputs>
   		<param format="gtf,gff,gff3" name="inf_gff" type="data" label="Convert this query" help="Provide genome annotation file in GFF, GTF, GFF3."/>
