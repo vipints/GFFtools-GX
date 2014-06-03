@@ -1,9 +1,9 @@
 <tool id="fml_gff2bed" name="GFF-to-BED" version="2.0.0">
 	<description>converter</description> 
-	<command interpreter="python">gff_to_bed_converter.py $inf_gff > $bed_format 
+	<command interpreter="python">gff_to_bed_conv.py $inf_gff > $bed_format 
 	</command> 
 	<inputs>
-  		<param format="gff3" name="inf_gff" type="data" label="Genome annotation file in GFF3 format" help="Please look at About format section."/>
+  		<param format="gtf,gff,gff3" name="inf_gff" type="data" label="Convert this query" help="Provide genome annotation file in GFF, GTF, GFF3."/>
     </inputs>
   	<outputs>
   		<data format="bed" name="bed_format" label="${tool.name} on ${on_string}: Converted" /> 
@@ -22,13 +22,13 @@
 
 **What it does**
 
-This tool converts gene transcript annotation from GFF3 format to UCSC wiggle 12 column BED format.
+This tool converts gene transcript annotation from GTF or GFF or GFF3 to UCSC wiggle 12 column BED format.
 
 --------
 
 **Example**
 
-- The following data in GFF3 format::
+- The following data in GFF3::
 
 	##gff-version 3
 	chr1    protein_coding  gene    11874   14409   0       +       .       ID=Gene:uc001aaa.3;Name=Gene:uc001aaa.3
@@ -45,17 +45,18 @@ This tool converts gene transcript annotation from GFF3 format to UCSC wiggle 12
 
 **About formats**
 
-**GFF3 format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields:
+**GFF3 format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields::
 
-	1. seqid - Must be a chromosome or scaffold or contig.
-	2. source - The program that generated this feature.
-	3. type - The name of this type of feature. Some examples of standard feature types are "gene", "CDS", "protein", "mRNA", and "exon". 
-	4. start - The starting position of the feature in the sequence. The first base is numbered 1.
-	5. stop - The ending position of the feature (inclusive).
-	6. score - A score between 0 and 1000. If there is no score value, enter ".".
-	7. strand - Valid entries include '+', '-', or '.' (for don't know/care).
-	8. phase - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base. If the feature is not a coding exon, the value should be '.'.
-	9. attributes - All lines with the same group are linked together into a single item.
+
+    1. seqid - Must be a chromosome or scaffold or contig.
+    2. source - The program that generated this feature.
+    3. type - The name of this type of feature. Some examples of standard feature types are "gene", "CDS", "protein", "mRNA", and "exon". 
+    4. start - The starting position of the feature in the sequence. The first base is numbered 1.
+    5. stop - The ending position of the feature (inclusive).
+    6. score - A score between 0 and 1000. If there is no score value, enter ".".
+    7. strand - Valid entries include '+', '-', or '.' (for don't know/care).
+    8. phase - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base. If the feature is not a coding exon, the value should be '.'.
+    9. attributes - All lines with the same group are linked together into a single item.
 
 **BED format** Browser Extensible Data format was designed at UCSC for displaying data tracks in the Genome Browser. It has three required fields and several additional optional ones:
 
@@ -78,6 +79,12 @@ The additional BED fields (optional) are::
    12. blockStarts - A comma-separated list of block starts. All of the blockStart positions should be calculated relative to chromStart. The number of items in this list should correspond to blockCount.
 
 --------
+
+**Copyright**
+
+2009-2014 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
+
+Sreedharan VT, Schultheiss SJ, Jean G, Kahles A, Bohnert R, Drewe P, Mudrakarta P, Görnitz N, Zeller G, Rätsch G. Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics 10.1093/bioinformatics/btt731 (2014)
 
 	</help>
 </tool>

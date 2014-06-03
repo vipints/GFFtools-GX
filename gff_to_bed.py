@@ -3,7 +3,7 @@
 Convert genome annotation data in GFF/GTF to a 12 column BED format. 
 BED format typically represents the transcript models. 
 
-Usage: python gff_to_bed_conv.py in.gff > out.bed  
+Usage: python conv_gff_to_bed.py in.gff > out.bed  
 """
 
 import re
@@ -33,11 +33,13 @@ def writeBED(tinfo):
                     rel_stop = int(ex_cod[1])
             
             if exon_len:
+                score = '0' 
+                score = ent1['score'][0] if ent1['score'] else score
                 out_print = [ent1['chr'],
                             str(rel_start),
                             str(rel_stop),
                             tid[0],
-                            ent1['score'][0], 
+                            score, 
                             ent1['strand'], 
                             str(rel_start),
                             str(rel_stop),
