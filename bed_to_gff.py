@@ -46,7 +46,7 @@ def __main__():
 
         # bed2gff result line 
         print '%s\tbed2gff\tgene\t%d\t%s\t%s\t%s\t.\tID=Gene:%s;Name=Gene:%s' % (parts[0], int(parts[1])+1, parts[2], parts[4], parts[5], parts[3], parts[3])
-        print '%s\tbed2gff\ttranscript\t%d\t%s\t%s\t%s\t.\tID=Gene:%s;Name=%s;Parent=Gene:%s' % (parts[0], int(parts[1])+1, parts[2], parts[4], parts[5], parts[3], parts[3], parts[3])
+        print '%s\tbed2gff\ttranscript\t%d\t%s\t%s\t%s\t.\tID=%s;Name=%s;Parent=Gene:%s' % (parts[0], int(parts[1])+1, parts[2], parts[4], parts[5], parts[3], parts[3], parts[3])
 
         st = int(parts[1])
         for ex_cnt in range(int(parts[-3])):

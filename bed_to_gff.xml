@@ -22,7 +22,7 @@
 
 **What it does**
 
-This tool converts data from a 12 column UCSC wiggle BED format to GFF3 format (scroll down for format description).
+This tool converts data from a 12 column UCSC wiggle BED format to GFF3 (scroll down for format description).
 
 --------
 
@@ -32,7 +32,7 @@ This tool converts data from a 12 column UCSC wiggle BED format to GFF3 format (
 
 	chr1    11873   14409   uc001aaa.3      0       +       11873   11873   0       3       354,109,1189,   0,739,1347,
 
-- Will be converted to GFF3 format::
+- Will be converted to GFF3::
 
 	##gff-version 3
 	chr1    bed2gff gene    11874   14409   0       +       .       ID=Gene:uc001aaa.3;Name=Gene:uc001aaa.3
