@@ -1,0 +1,86 @@
+<tool id="fml_genbank2gff" name="GenBank_to_GFF3" version="0.1">
+  <description>converter</description>
+  	<command interpreter="python">
+	  gbk_to_gff_conv.py $inf_gbk > $gff_format
+  	</command>
+  	<inputs>
+		<param format="gb,gbk,genbank,txt" name="inf_gbk" type="data" label="Convert this query" help="Flat file format consists of an annotation section and a sequence section."/>
+  	</inputs>
+	<outputs>
+		<data format="gff3" name="gff_format" label="${tool.name} on ${on_string}: Converted GFF"/>
+  	</outputs>
+  	<help>
+
+**What it does**
+
+GenBank-to-GFF3 converts annotations in GenBank format to Generic Feature Format Version 3 (GFF3). For more information on GenBank, please refer to `here`__
+ .. __: http://www.ncbi.nlm.nih.gov/genbank/ 
+
+------
+
+**Example**
+
+- The following data in GenBank format::
+	
+    LOCUS       NM_001202705            2406 bp    mRNA    linear   PLN 28-MAY-2011
+    DEFINITION  Arabidopsis thaliana thiamine biosynthesis protein ThiC (THIC)
+                mRNA, complete cds.
+    ACCESSION   NM_001202705
+    VERSION     NM_001202705.1  GI:334184566.........
+    FEATURES             Location/Qualifiers
+         source          1..2406
+                         /organism="Arabidopsis thaliana"
+                         /mol_type="mRNA"
+                         /db_xref="taxon:3702"........
+         gene            1..2406
+                         /gene="THIC"
+                         /locus_tag="AT2G29630"
+                         /gene_synonym="PY; PYRIMIDINE REQUIRING; T27A16.27;........
+    ORIGIN
+        1 aagcctttcg ctttaggctg cattgggccg tgacaatatt cagacgattc aggaggttcg
+        61 ttcctttttt aaaggaccct aatcactctg agtaccactg actcactcag tgtgcgcgat
+        121 tcatttcaaa aacgagccag cctcttcttc cttcgtctac tagatcagat ccaaagcttc
+        181 ctcttccagc tatggctgct tcagtacact gtaccttgat gtccgtcgta tgcaacaaca
+    //
+
+
+- Will be converted to GFF3::
+
+    ##gff-version 3
+    # sequence-region NM_001202705 1 2406
+    NM_001202705    GenBank chromosome      1       2406    .       +       1       ID=NM_001202705;Alias=2;Dbxref=taxon:3702;Name=NM_001202705;Note=Arabidopsis thaliana thiamine biosynthesis protein ThiC (THIC) mRNA%2C complete cds.,REVIEWED REFSEQ;
+    NM_001202705    GenBank gene    1       2406    .       +       1       ID=AT2G29630;Dbxref=GeneID:817513,TAIR:AT2G29630;Name=THIC;locus_tag=AT2G29630
+    NM_001202705    GenBank mRNA    192     2126    .       +       1       ID=AT2G29630.t01;Parent=AT2G29630
+    NM_001202705    GenBank CDS     192     2126    .       +       1       ID=AT2G29630.p01;Parent=AT2G29630.t01;Dbxref=GI:334184567,GeneID:817513,TAIR:AT2G29630;Name=THIC;Note=thiaminC (THIC)%3B CONTAINS InterPro DOMAIN;rotein_id=NP_001189634.1;
+    NM_001202705    GenBank exon    192     2126    .       +       1       Parent=AT2G29630.t01
+    ##FASTA
+    >NM_001202705
+    AAGCCTTTCGCTTTAGGCTGCATTGGGCCGTGACAATATTCAGACGATTCAGGAGGTTCG
+    TTCCTTTTTTAAAGGACCCTAATCACTCTGAGTACCACTGACTCACTCAGTGTGCGCGAT
+
+
+------
+
+**About formats** 
+
+**GenBank format** consists of an annotation section and a sequence section, See more details `here`__
+ .. __: http://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html 
+
+**GFF3** Generic Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields:
+
+1. seqid - Must be a chromosome or scaffold or contig.
+2. source - The program that generated this feature.
+3. type - The name of this type of feature. Some examples of standard feature types are "gene", "CDS", "protein", "mRNA", and "exon".
+4. start - The starting position of the feature in the sequence. The first base is numbered 1.
+5. stop - The ending position of the feature (inclusive).
+6. score - A score between 0 and 1000. If there is no score value, enter ".".
+7. strand - Valid entries include '+', '-', or '.' (for don't know/care).
+8. phase - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base. If the feature is not a coding exon, the value should be '.'.
+9. attributes - All lines with the same group are linked together into a single item.
+
+--------
+
+Copyright (C) 2010-2013 Max Planck Society and Memorial Sloan-Kettering Cancer Center
+
+	</help>
+</tool>
