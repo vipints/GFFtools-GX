@@ -12,7 +12,7 @@ Requirements:
 import os, sys, re
 import collections
 from Bio import SeqIO
-from helper import open_file
+import helper 
 
 def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
     """
@@ -27,7 +27,7 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
                 '.',
                 ginfo[2],
                 '.',
-                'ID=%s;Name=%s;Note=%s' % (str(gname), str(gname), ginfo[-1])]
+                'ID=%s;Name=%s' % (str(gname), str(gname))]
         print '\t'.join(line) 
         ## construct the transcript line is not defined in the original file 
         t_line = [str(chr_id), 'gbk_to_gff', source, 0, 1, '.', ginfo[2], '.'] 
@@ -92,6 +92,7 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
                 line[2] = 'transcript'
             else:
                 line[2] = 'mRNA'
+
             line[8] = 'ID=Unknown_Transcript_' + str(unk) + ';Parent=Unknown_Gene_' + str(unk)
             print "\t".join(line)
            
@@ -122,7 +123,7 @@ def gbk_parse(fname):
     """
     Extract genome annotation recods from genbank format 
     """
-    fhand = open_file(gbkfname)
+    fhand = helper.open_file(gbkfname)
     unk = 1 
 
     for record in SeqIO.parse(fhand, "genbank"):
@@ -136,7 +137,11 @@ def gbk_parse(fname):
         for rec in record.features:
 
             if rec.type == 'source':
-                mol_type = rec.qualifiers['mol_type'][0]
+                try:
+                    mol_type = rec.qualifiers['mol_type'][0]
+                except:
+                    mol_type = '.'
+                    pass 
                 try:
                     chr_id = rec.qualifiers['chromosome'][0]
                 except:

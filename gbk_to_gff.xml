@@ -1,20 +1,20 @@
-<tool id="fml_genbank2gff" name="GenBank_to_GFF3" version="0.1">
+<tool id="fml_gbk2gff" name="GBK-to-GFF" version="0.2">
   <description>converter</description>
-  	<command interpreter="python">
-	  gbk_to_gff_conv.py $inf_gbk > $gff_format
+  	<command interpreter="python">gbk_to_gff.py $inf_gbk > $gff_format
   	</command>
   	<inputs>
-		<param format="gb,gbk,genbank,txt" name="inf_gbk" type="data" label="Convert this query" help="Flat file format consists of an annotation section and a sequence section."/>
+		<param format="gb,gbk,genbank,txt" name="inf_gbk" type="data" label="Convert this query" help="GenBank flat file format consists of an annotation section and a sequence section."/>
   	</inputs>
 	<outputs>
-		<data format="gff3" name="gff_format" label="${tool.name} on ${on_string}: Converted GFF"/>
+		<data format="gff3" name="gff_format" label="${tool.name} on ${on_string}: Converted"/>
   	</outputs>
   	<help>
-
+    
 **What it does**
 
-GenBank-to-GFF3 converts annotations in GenBank format to Generic Feature Format Version 3 (GFF3). For more information on GenBank, please refer to `here`__
- .. __: http://www.ncbi.nlm.nih.gov/genbank/ 
+This tool converts data from a GenBank_ flat file format to GFF (scroll down for format description).
+
+.. _GenBank: http://www.ncbi.nlm.nih.gov/genbank/ 
 
 ------
 
@@ -47,40 +47,39 @@ GenBank-to-GFF3 converts annotations in GenBank format to Generic Feature Format
 - Will be converted to GFF3::
 
     ##gff-version 3
-    # sequence-region NM_001202705 1 2406
-    NM_001202705    GenBank chromosome      1       2406    .       +       1       ID=NM_001202705;Alias=2;Dbxref=taxon:3702;Name=NM_001202705;Note=Arabidopsis thaliana thiamine biosynthesis protein ThiC (THIC) mRNA%2C complete cds.,REVIEWED REFSEQ;
-    NM_001202705    GenBank gene    1       2406    .       +       1       ID=AT2G29630;Dbxref=GeneID:817513,TAIR:AT2G29630;Name=THIC;locus_tag=AT2G29630
-    NM_001202705    GenBank mRNA    192     2126    .       +       1       ID=AT2G29630.t01;Parent=AT2G29630
-    NM_001202705    GenBank CDS     192     2126    .       +       1       ID=AT2G29630.p01;Parent=AT2G29630.t01;Dbxref=GI:334184567,GeneID:817513,TAIR:AT2G29630;Name=THIC;Note=thiaminC (THIC)%3B CONTAINS InterPro DOMAIN;rotein_id=NP_001189634.1;
-    NM_001202705    GenBank exon    192     2126    .       +       1       Parent=AT2G29630.t01
-    ##FASTA
-    >NM_001202705
-    AAGCCTTTCGCTTTAGGCTGCATTGGGCCGTGACAATATTCAGACGATTCAGGAGGTTCG
-    TTCCTTTTTTAAAGGACCCTAATCACTCTGAGTACCACTGACTCACTCAGTGTGCGCGAT
-
+    NM_001202705    gbk_to_gff chromosome      1       2406    .       +       1       ID=NM_001202705;Alias=2;Dbxref=taxon:3702;Name=NM_001202705
+    NM_001202705    gbk_to_gff gene    1       2406    .       +       1       ID=AT2G29630;Dbxref=GeneID:817513,TAIR:AT2G29630;Name=THIC
+    NM_001202705    gbk_to_gff mRNA    192     2126    .       +       1       ID=AT2G29630.t01;Parent=AT2G29630
+    NM_001202705    gbk_to_gff CDS     192     2126    .       +       1       ID=AT2G29630.p01;Parent=AT2G29630.t01
+    NM_001202705    gbk_to_gff exon    192     2126    .       +       1       Parent=AT2G29630.t01
 
 ------
 
 **About formats** 
 
-**GenBank format** consists of an annotation section and a sequence section, See more details `here`__
- .. __: http://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html 
+**GenBank format** An example of a GenBank record may be viewed here_
 
-**GFF3** Generic Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields:
+.. _here: http://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html 
 
-1. seqid - Must be a chromosome or scaffold or contig.
-2. source - The program that generated this feature.
-3. type - The name of this type of feature. Some examples of standard feature types are "gene", "CDS", "protein", "mRNA", and "exon".
-4. start - The starting position of the feature in the sequence. The first base is numbered 1.
-5. stop - The ending position of the feature (inclusive).
-6. score - A score between 0 and 1000. If there is no score value, enter ".".
-7. strand - Valid entries include '+', '-', or '.' (for don't know/care).
-8. phase - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base. If the feature is not a coding exon, the value should be '.'.
-9. attributes - All lines with the same group are linked together into a single item.
+**GFF3** Generic Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields::
+
+    1. seqid - Must be a chromosome or scaffold or contig.
+    2. source - The program that generated this feature.
+    3. type - The name of this type of feature. Some examples of standard feature types are "gene", "CDS", "protein", "mRNA", and "exon".
+    4. start - The starting position of the feature in the sequence. The first base is numbered 1.
+    5. stop - The ending position of the feature (inclusive).
+    6. score - A score between 0 and 1000. If there is no score value, enter ".".
+    7. strand - Valid entries include '+', '-', or '.' (for don't know/care).
+    8. phase - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base. If the feature is not a coding exon, the value should be '.'.
+    9. attributes - All lines with the same group are linked together into a single item.
 
 --------
 
-Copyright (C) 2010-2013 Max Planck Society and Memorial Sloan-Kettering Cancer Center
+**Copyright**
+
+2009-2014 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
+
+Sreedharan VT, Schultheiss SJ, Jean G, Kahles A, Bohnert R, Drewe P, Mudrakarta P, Görnitz N, Zeller G, Rätsch G. Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics 10.1093/bioinformatics/btt731 (2014)
 
 	</help>
 </tool>
