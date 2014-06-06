@@ -1,12 +1,12 @@
 <tool id="fml_gtf2gff" name="GTF-to-GFF" version="2.0.0">
 	<description>converter</description> 
-	<command interpreter="python">gtf_to_gff_converter.py $inf_gtf > $gff3_format 
+	<command interpreter="python">gtf_to_gff.py $inf_gtf > $gff3_format 
 	</command> 
 	<inputs>
-  		<param format="gtf" name="inf_gtf" type="data" label="Convert this dataset" help="GTF file for converting to GFF3 format."/>
+  		<param format="gtf" name="inf_gtf" type="data" label="Convert this query" help="Provide genome annotation file in GTF."/>
         </inputs>
   	<outputs>
-  		<data format="gff3,gff" name="gff3_format" label="${tool.name} on ${on_string}: Converted" /> 
+  		<data format="gff3" name="gff3_format" label="${tool.name} on ${on_string}: Converted" /> 
   	</outputs>
 	    <tests>
         	<test>
@@ -30,7 +30,7 @@
 
 **What it does**
 
-This tool converts data from GTF format to valid GFF3 format (scroll down for format description).
+This tool converts data from GTF to a valid GFF3 file (scroll down for format description).
 
 --------
 
@@ -58,7 +58,7 @@ This tool converts data from GTF format to valid GFF3 format (scroll down for fo
 
 **About formats**
 
-**GTF format** Gene Transfer Format, it borrows from GFF, but has additional structure that warrants a separate definition and format name. GTF lines have nine tab-seaparated fields:
+**GTF format** Gene Transfer Format, it borrows from GFF, but has additional structure that warrants a separate definition and format name. GTF lines have nine tab-seaparated fields::
 
     1. seqname - The name of the sequence.
     2. source - This indicating where the annotation came from.
@@ -70,7 +70,7 @@ This tool converts data from GTF format to valid GFF3 format (scroll down for fo
     8. frame - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base.
     9. attributes - These attributes are designed for handling multiple transcripts from the same genomic region.
 
-**GFF3 format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields:
+**GFF3 format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields::
 
     1. seqid - Must be a chromosome or scaffold.
     2. source - The program that generated this feature.
@@ -83,6 +83,12 @@ This tool converts data from GTF format to valid GFF3 format (scroll down for fo
     9. attributes - All lines with the same group are linked together into a single item.
 
 --------
+
+**Copyright**
+
+2009-2014 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
+
+Sreedharan VT, Schultheiss SJ, Jean G, Kahles A, Bohnert R, Drewe P, Mudrakarta P, Görnitz N, Zeller G, Rätsch G. Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics 10.1093/bioinformatics/btt731 (2014)
 
 	</help>
 </tool>
