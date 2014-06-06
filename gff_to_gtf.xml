@@ -1,6 +1,6 @@
 <tool id="fml_gfftogtf" name="GFF-to-GTF" version="2.0.0">
 	<description>converter</description> 
-	<command interpreter="python">gff_to_gtf_converter.py $inf_gff3 $gtf_format
+	<command interpreter="python">gff_to_gtf.py $inf_gff3 > $gtf_format
 	</command> 
 	<inputs>
   		<param format="gff3,gff" name="inf_gff3" type="data" label="Convert this query" help="Provide genome annotation file in GFF or GFF3."/>
