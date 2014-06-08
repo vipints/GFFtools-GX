@@ -14,6 +14,7 @@ def init_gene():
     """
     Initializing the gene structure 
     """
+
     gene_det = [('id', 'f8'), 
             ('anno_id', numpy.dtype), 
             ('confgenes_id', numpy.dtype),
@@ -67,7 +68,11 @@ def init_gene():
 def open_file(fname):
     """
     Open the file (supports .gz .bz2) and returns the handler
+
+    @args fname: input file name for reading 
+    @type fname: str
     """
+
     try:
         if os.path.splitext(fname)[1] == ".gz":
             FH = gzip.open(fname, 'rb')
@@ -77,12 +82,19 @@ def open_file(fname):
             FH = open(fname, 'rU')
     except Exception as error:
         sys.exit(error)
+
     return FH
 
 def add_CDS_phase(strand, cds):
     """
     Calculate CDS phase and add to the CDS exons
+
+    @args strand: feature strand information 
+    @type strand: +/- 
+    @args cds: coding exon coordinates 
+    @type cds: numpy array [[int, int, int]]
     """
+
     cds_region, cds_flag = [], 0 
     if strand == '+':
         for cdspos in cds:
@@ -127,7 +139,15 @@ def add_CDS_phase(strand, cds):
 def buildUTR(cc, ec, strand):
     """
     Build UTR regions from a given set of CDS and exon coordiantes of a gene
+
+    @args cc: coding exon coordinates 
+    @type cc: numpy array [[int, int, int]]
+    @args ec: exon coordinates 
+    @type ec: numpy array [[int, int]]
+    @args strand: feature strand information 
+    @type strand: +/- 
     """
+
     utr5 = []
     utr3 = []
     if strand == '+':
@@ -169,7 +189,17 @@ def buildUTR(cc, ec, strand):
 def make_Exon_cod(strand_p, five_p_utr, cds_cod, three_p_utr):
     """
     Create exon cordinates from UTR's and CDS region
+
+    @args strand_p: feature strand information 
+    @type strand_p: +/- 
+    @args five_p_utr: five prime utr exon coordinates 
+    @type five_p_utr: numpy array [[int, int]]
+    @args cds_cod: coding exon coordinates 
+    @type cds_cod: numpy array [[int, int, int]]
+    @args three_p_utr: three prime utr exon coordinates 
+    @type three_p_utr: numpy array [[int, int]]
     """
+
     exon_pos = []
     if strand_p == '+':        
         utr5_start, utr5_end = 0, 0
