@@ -128,7 +128,8 @@ def buildUTR(cc, ec, strand):
     """
     Build UTR regions from a given set of CDS and exon coordiantes of a gene
     """
-    utr5 = utr3 = []
+    utr5 = []
+    utr3 = []
     if strand == '+':
         cds_s = cc[0][0]
         for ex in ec:
