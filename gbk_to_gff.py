@@ -3,13 +3,20 @@
 Convert data from Genbank format to GFF. 
 
 Usage: 
-python gbk_to_gff_conv.py in.gbk > out.gff 
+python gbk_to_gff.py in.gbk > out.gff 
 
 Requirements:
     BioPython:- http://biopython.org/
+    helper.py : https://github.com/vipints/GFFtools-GX/blob/master/helper.py
+
+Copyright (C) 
+    2009-2012 Friedrich Miescher Laboratory of the Max Planck Society, Tubingen, Germany.
+    2012-2014 Memorial Sloan Kettering Cancer Center New York City, USA.
 """
 
-import os, sys, re
+import os
+import re
+import sys
 import collections
 from Bio import SeqIO
 import helper 
@@ -18,6 +25,7 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
     """
     Write the feature information
     """
+
     for gname, ginfo in genes.items():
         line = [str(chr_id), 
                 'gbk_to_gff',
@@ -112,6 +120,7 @@ def exon_line_print(temp_line, trx_exons, parent, ftype):
     """
     Print the EXON feature line 
     """
+
     for ex in trx_exons:
         temp_line[2] = ftype
         temp_line[3] = str(ex[0])
@@ -122,7 +131,11 @@ def exon_line_print(temp_line, trx_exons, parent, ftype):
 def gbk_parse(fname):
     """
     Extract genome annotation recods from genbank format 
+
+    @args fname: gbk file name 
+    @type fname: str
     """
+
     fhand = helper.open_file(gbkfname)
     unk = 1 
 
@@ -186,6 +199,7 @@ def gbk_parse(fname):
         unk = feature_table(chr_id, mol_type, strand, gene_tags, tx_tags, cds, exon, unk)
         
     fhand.close()
+
 
 if __name__=='__main__': 
 
