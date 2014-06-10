@@ -4,6 +4,13 @@ Convert genome annotation data in GFF/GTF to a 12 column BED format.
 BED format typically represents the transcript models. 
 
 Usage: python gff_to_bed.py in.gff > out.bed  
+
+Requirement:
+    GFFParser.py: https://github.com/vipints/GFFtools-GX/blob/master/GFFParser.py    
+
+Copyright (C) 
+    2009-2012 Friedrich Miescher Laboratory of the Max Planck Society, Tubingen, Germany.
+    2012-2014 Memorial Sloan Kettering Cancer Center New York City, USA.
 """
 
 import re
