@@ -24,6 +24,9 @@ import helper as utils
 def attribute_tags(col9):
     """ 
     Split the key-value tags from the attribute column, it takes column number 9 from GTF/GFF file 
+
+    @args col9: attribute column from GFF file 
+    @type col9: str
     """
     info = defaultdict(list)
     is_gff = False
@@ -68,6 +71,9 @@ def attribute_tags(col9):
 def spec_features_keywd(gff_parts):
     """
     Specify the feature key word according to the GFF specifications
+
+    @args gff_parts: attribute field key 
+    @type gff_parts: str 
     """
     for t_id in ["transcript_id", "transcriptId", "proteinId"]:
         try:
@@ -100,6 +106,9 @@ def spec_features_keywd(gff_parts):
 def Parse(ga_file):
     """
     Parsing GFF/GTF file based on feature relationship, it takes the input file.
+
+    @args ga_file: input file name 
+    @type ga_file: str 
     """
     child_map = defaultdict(list)
     parent_map = dict()
@@ -199,8 +208,10 @@ def format_gene_models(parent_nf_map, child_nf_map):
     """
     Genarate GeneObject based on the parsed file contents
 
-    parent_map: parent features with source and chromosome information 
-    child_map: transctipt and exon information are encoded 
+    @args parent_nf_map: parent features with source and chromosome information 
+    @type parent_nf_map: collections defaultdict
+    @args child_nf_map: transctipt and exon information are encoded 
+    @type child_nf_map: collections defaultdict
     """
     g_cnt = 0 
     gene = np.zeros((len(parent_nf_map),), dtype = utils.init_gene())
@@ -405,6 +416,9 @@ def format_gene_models(parent_nf_map, child_nf_map):
 def NonetoemptyList(XS):
     """
     Convert a None type to empty list 
+
+    @args XS: None type 
+    @type XS: str 
     """
     return [] if XS is None else XS 
 
@@ -419,7 +433,13 @@ def create_missing_feature_type(p_feat, c_feat):
     chr21   hg19_knownGene  exon    9711935 9712038 0.000000        +       .       gene_id "uc011abu.2"; transcript_id "uc011abu.2"; 
 
     This function gets the parsed feature annotations. 
+    
+    @args p_feat: Parent feature map  
+    @type p_feat: collections defaultdict
+    @args c_feat: Child feature map  
+    @type c_feat: collections defaultdict
     """
+
     child_n_map = defaultdict(list)
     for fid, det in c_feat.items():
         # get the details from grand child  
