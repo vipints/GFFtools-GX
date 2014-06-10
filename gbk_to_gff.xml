@@ -1,4 +1,4 @@
-<tool id="fml_gbk2gff" name="GBK-to-GFF" version="0.2">
+<tool id="fml_gbk2gff" name="GBK-to-GFF" version="2.0.0">
   <description>converter</description>
   	<command interpreter="python">gbk_to_gff.py $inf_gbk > $gff_format
   	</command>
@@ -8,6 +8,12 @@
 	<outputs>
 		<data format="gff3" name="gff_format" label="${tool.name} on ${on_string}: Converted"/>
   	</outputs>
+	<tests>
+        <test>
+                <param name="inf_gbk" value="s_cerevisiae_SCU49845.gbk" />
+                <output name="gff_format" file="s_cerevisiae_SCU49845.gff3" />
+        </test>
+	</tests>
   	<help>
     
 **What it does**
