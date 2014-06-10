@@ -1,0 +1,7 @@
+<section name="GFFtools" id="gfftools.web">
+    <tool file="GFFtools-GX/gff_to_bed.xml"/>
+    <tool file="GFFtools-GX/bed_to_gff.xml"/>
+    <tool file="GFFtools-GX/gbk_to_gff.xml"/>
+    <tool file="GFFtools-GX/gff_to_gtf.xml"/>
+    <tool file="GFFtools-GX/gtf_to_gff.xml"/>
+</section>
