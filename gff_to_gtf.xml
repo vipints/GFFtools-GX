@@ -1,4 +1,4 @@
-<tool id="fml_gfftogtf" name="GFF-to-GTF" version="2.0.0">
+<tool id="fml_gff2gtf" name="GFF-to-GTF" version="2.0.0">
 	<description>converter</description> 
 	<command interpreter="python">gff_to_gtf.py $inf_gff3 > $gtf_format
 	</command> 
