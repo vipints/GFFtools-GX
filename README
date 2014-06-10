@@ -16,21 +16,25 @@ Tool configuration files in *.xml format.
     gff_to_gtf.xml
     bed_to_gff.xml
     gff_to_bed.xml
+    gbk_to_gff.xml
 
 Python based scripts. 
 
-    gtf_to_gff_converter.py: converts data from GTF format to valid GFF3 format.
-    gff_to_gtf_converter.py: converts data from GFF3 format to GTF format.
-    bed_to_gff_converter.py: converts data from a 12 column UCSC wiggle BED format to GFF3 format.
-    gff_to_bed_converter.py: converts gene transcript annotation from GFF3 format to UCSC wiggle 12 column BED format.
+    gtf_to_gff.py: convert data from GTF to valid GFF3.
+    gff_to_gtf.py: convert data from GFF3 to GTF.
+    bed_to_gff.py: convert data from a 12 column UCSC wiggle BED format to GFF3.
+    gff_to_bed.py: convert gene transcript annotation from GFF3 to UCSC wiggle 12 column BED format.
+    gbk_to_gff.py: convert data from genbank format to GFF. 
+    GFFParser.py: Parse GFF/GTF files.  
+    helper.py: Utility functions.
 
-t: Test data set. (move to your galaxy_root_folder/test-data/)
+test-data: Test data set. (move to your galaxy_root_folder/test-data/)
     
     You may need to move the test files into your test-data directory so galaxy can find them. 
     If you want to run the functional tests eg as: 
 
     exmaple: 
-    sh run_functional_tests.sh -id fml_gtf2gff3
+    sh run_functional_tests.sh -id fml_gtf2gff
 
 REQUIREMENTS
 
@@ -38,11 +42,11 @@ REQUIREMENTS
 
 COMMENTS/QUESTIONS 
 
-I can be reached at vipin@cbio.mskcc.org 
+I can be reached at vipin [at] cbio.mskcc.org 
 
 LICENSE
 
-Copyright (C) 2010-2012 Friedrich Miescher Laboratory of the Max Planck Society
+Copyright (C) 2009-2012 Friedrich Miescher Laboratory of the Max Planck Society
               2013-2014 Memorial Sloan Kettering Cancer Center
 
 This program is free software; you can redistribute it and/or modify
