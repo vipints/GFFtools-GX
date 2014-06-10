@@ -5,6 +5,8 @@ Convert Gene Transfer Format [GTF] to Generic Feature Format Version 3 [GFF3].
 Usage: python gtf_to_gff.py in.gtf > out.gff3  
     
 Requirement:
+    GFFParser.py: https://github.com/vipints/GFFtools-GX/blob/master/GFFParser.py    
+    helper.py : https://github.com/vipints/GFFtools-GX/blob/master/helper.py
     
 Copyright (C) 
     2009-2012 Friedrich Miescher Laboratory of the Max Planck Society, Tubingen, Germany.
