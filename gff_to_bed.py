@@ -13,6 +13,9 @@ import GFFParser
 def writeBED(tinfo):
     """
     writing result files in bed format 
+
+    @args tinfo: list of genes 
+    @args tinfo: numpy object  
     """
 
     for ent1 in tinfo:
