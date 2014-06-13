@@ -1,0 +1,78 @@
+<tool id="fml_gfffmap" name="GFF-map" version="2.0.0">
+  <description>features</description>
+  <command interpreter="python"> 
+		gff_fmap.py $gff_input > $idmapping
+    </command>
+  <inputs>
+    <param format="gff3,gff" name="gff_input" type="data" label="Query file" help="Provide genome annotation file in GFF."/>
+  </inputs>
+  <outputs>
+    <data format="txt" name="idmapping" label="${tool.name} on ${on_string}: parent child id map"/>
+  </outputs>
+		<tests>
+    		<test>
+            	<param name="gff_input" value="Feature_ID_mapping_W.gff3" />
+            	<output name="idmapping" file="Feature_ID_mapping_W.txt" />
+            </test>
+    		<test>
+            	<param name="gff_input" value="Aly_JGI.gff3" />
+            	<output name="idmapping" file="Feature_ID_mapping_R.txt" />
+            </test>
+        </tests>
+  <help>
+
+**What it does** 
+
+GFF-map provides the features (gene, mRNA, UTR's, exon, CDS etc) relationship based on their identifier mapping in a given GFF file.
+
+--------
+
+**Example**
+
+- The features ID mapping in the following data in GFF3::
+
+	##gff-version 3
+	17      protein_coding  gene    7255208 7258258 .       +       .       ID=ENSG00000213859;Name=KCTD11
+	17      protein_coding  mRNA    7255208 7258258 .       +       .       ID=ENST00000333751;Name=KCTD11-001;Parent=ENSG00000213859
+	17      protein_coding  five_prime_UTR  7255208 7256261 .       +       .       Parent=ENST00000333751
+	17      protein_coding  CDS     7256262 7256960 .       +       0       Name=CDS:KCTD11;Parent=ENST00000333751,ENSP00000328352
+	17      protein_coding  three_prime_UTR 7256961 7258258 .       +       .       Parent=ENST00000333751
+	17      protein_coding  exon    7255208 7258258 .       +       .       Parent=ENST00000333751
+
+- Will be displayed as::
+
+	FIRST level feature(s):
+		('protein_coding', 'gene')
+
+	SECOND level feature(s):
+		('protein_coding', 'mRNA')
+	
+	THIRD level feature(s):
+		('protein_coding', 'CDS'), ('protein_coding', 'exon'), ('protein_coding', 'five_prime_UTR'), ('protein_coding', 'three_prime_UTR')
+
+--------
+
+**About formats**
+
+**GFF3 format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields::
+
+    1. seqid - Must be a chromosome or scaffold.
+    2. source - The program that generated this feature.
+    3. type - The name of this type of feature. Some examples of standard feature types are "gene", "CDS", "protein", "mRNA", and "exon". 
+    4. start - The starting position of the feature in the sequence. The first base is numbered 1.
+    5. stop - The ending position of the feature (inclusive).
+    6. score - A score between 0 and 1000. If there is no score value, enter ".".
+    7. strand - Valid entries include '+', '-', or '.' (for don't know/care).
+    8. phase - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base. If the feature is not a coding exon, the value should be '.'.
+    9. attributes - All lines with the same group are linked together into a single item.
+
+--------
+
+**Copyright**
+
+2009-2014 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
+
+Sreedharan VT, Schultheiss SJ, Jean G, Kahles A, Bohnert R, Drewe P, Mudrakarta P, Görnitz N, Zeller G, Rätsch G. Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics 10.1093/bioinformatics/btt731 (2014)
+
+</help>
+</tool>
