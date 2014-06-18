@@ -34,6 +34,7 @@ GFF-map provides the features (gene, mRNA, UTR's, exon, CDS etc) relationship ba
 	##gff-version 3
 	17      protein_coding  gene    7255208 7258258 .       +       .       ID=ENSG00000213859;Name=KCTD11
 	17      protein_coding  mRNA    7255208 7258258 .       +       .       ID=ENST00000333751;Name=KCTD11-001;Parent=ENSG00000213859
+	17      protein_coding  protein     7256262 7256960 .       +       0       ID=ENSP00000328352;Name=ENSP00000328352
 	17      protein_coding  five_prime_UTR  7255208 7256261 .       +       .       Parent=ENST00000333751
 	17      protein_coding  CDS     7256262 7256960 .       +       0       Name=CDS:KCTD11;Parent=ENST00000333751,ENSP00000328352
 	17      protein_coding  three_prime_UTR 7256961 7258258 .       +       .       Parent=ENST00000333751
@@ -41,14 +42,23 @@ GFF-map provides the features (gene, mRNA, UTR's, exon, CDS etc) relationship ba
 
 - Will be displayed as::
 
-	FIRST level feature(s):
-		('protein_coding', 'gene')
+------------------------------------------------------
+Parent feature type | Associated child feature type(s)
+------------------------------------------------------
 
-	SECOND level feature(s):
-		('protein_coding', 'mRNA')
-	
-	THIRD level feature(s):
-		('protein_coding', 'CDS'), ('protein_coding', 'exon'), ('protein_coding', 'five_prime_UTR'), ('protein_coding', 'three_prime_UTR')
+protein_coding mRNA
+                | protein_coding CDS
+                | protein_coding exon
+                | protein_coding five_prime_UTR
+                | protein_coding three_prime_UTR
+
+protein_coding protein  
+                | protein_coding CDS
+
+protein_coding gene
+                | protein_coding mRNA
+
+------------------------------------------------------
 
 --------
 
