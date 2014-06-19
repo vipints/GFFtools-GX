@@ -181,15 +181,15 @@ def parent_child_id_map(gff_handle):
         for fid, stypes in parent_sts.items():
             pc_final_map[stypes] = dict()
     # generate a report on feature id mapping in the file 
-    print '------------------------------------------------------'
-    print 'Parent feature type | Associated child feature type(s)'
-    print '------------------------------------------------------'
+    print '+---------------------+---------------------------------+'
+    print '| Parent feature type | Associated child feature type(s)|'
+    print '+---------------------+---------------------------------+'
     for key, value in pc_final_map.items():
         print key[0], key[1]
         for child_to in value:
-            print '\t\t|',child_to[0], child_to[1]
-        print 
-    print '------------------------------------------------------'
+            print '\t\t\t|-',child_to[0], child_to[1]
+        print '+---------------------+---------------------------------+'
+
 
 if __name__=='__main__':
 
