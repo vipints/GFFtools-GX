@@ -41,24 +41,19 @@ GFF-map provides the features (gene, mRNA, UTR's, exon, CDS etc) relationship ba
 	17      protein_coding  exon    7255208 7258258 .       +       .       Parent=ENST00000333751
 
 - Will be displayed as::
-
-------------------------------------------------------
-Parent feature type | Associated child feature type(s)
-------------------------------------------------------
-
-protein_coding mRNA
-                | protein_coding CDS
-                | protein_coding exon
-                | protein_coding five_prime_UTR
-                | protein_coding three_prime_UTR
-
-protein_coding protein  
-                | protein_coding CDS
-
-protein_coding gene
-                | protein_coding mRNA
-
-------------------------------------------------------
+    
+    +-----------------------+---------------------------------+
+    | Parent feature type   | Associated child feature type(s)|
+    +-----------------------+---------------------------------+
+    | protein_coding gene   | protein_coding mRNA             |
+    +-----------------------+---------------------------------+
+    | protein_coding protein| protein_coding CDS              |
+    +-----------------------+---------------------------------+
+    | protein_coding mRNA   | protein_coding CDS              |
+    |                       | protein_coding exon             |
+    |                       | protein_coding five_prime_UTR   |
+    |                       | protein_coding three_prime_UTR  |
+    +-----------------------+---------------------------------+
 
 --------
 
