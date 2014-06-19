@@ -5,8 +5,8 @@ GFF feature mapping program, to find the relation between different features des
 Usage: 
 python gff_fmap.py in.gff > out.txt 
 
-Requirement: 
-    
+Courtesy: Brad Chapman 
+    Few functions are inherited from bcbio-GFFParser program. 
 """
 
 import re
