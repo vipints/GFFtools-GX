@@ -17,6 +17,7 @@ Tool configuration files in *.xml format.
     bed_to_gff.xml
     gff_to_bed.xml
     gbk_to_gff.xml
+    gff_fmap.xml
 
 Python based scripts. 
 
@@ -25,6 +26,7 @@ Python based scripts.
     bed_to_gff.py: convert data from a 12 column UCSC wiggle BED format to GFF3.
     gff_to_bed.py: convert gene transcript annotation from GFF3 to UCSC wiggle 12 column BED format.
     gbk_to_gff.py: convert data from genbank format to GFF. 
+    gff_fmap.py: find the relation between different features described in a GFF file.  
     GFFParser.py: Parse GFF/GTF files.  
     helper.py: Utility functions.
 

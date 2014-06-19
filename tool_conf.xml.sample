@@ -4,4 +4,5 @@
     <tool file="GFFtools-GX/gbk_to_gff.xml"/>
     <tool file="GFFtools-GX/gff_to_gtf.xml"/>
     <tool file="GFFtools-GX/gtf_to_gff.xml"/>
+    <tool file="GFFtools-GX/gff_fmap.xml"/>
 </section>
