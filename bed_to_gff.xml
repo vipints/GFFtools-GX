@@ -1,6 +1,6 @@
 <tool id="fml_bed2gff" name="BED-to-GFF" version="2.0.0">
 	<description>converter</description>
-	<command interpreter="python">bed_to_gff.py $inf_bed > $gff_format 
+	<command interpreter="python">bed_to_gff.py $inf_bed  &gt; $gff_format 
 	</command> 
 	<inputs>
   		<param format="bed" name="inf_bed" type="data" label="Convert this query" help="Provide genome annotation in 12 column BED format."/>

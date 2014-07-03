@@ -1,6 +1,6 @@
 <tool id="fml_gbk2gff" name="GBK-to-GFF" version="2.0.0">
   <description>converter</description>
-  	<command interpreter="python">gbk_to_gff.py $inf_gbk > $gff_format
+  	<command interpreter="python">gbk_to_gff.py $inf_gbk &gt; $gff_format
   	</command>
   	<inputs>
 		<param format="gb,gbk,genbank,txt" name="inf_gbk" type="data" label="Convert this query" help="GenBank flat file format consists of an annotation section and a sequence section."/>

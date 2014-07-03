@@ -1,7 +1,7 @@
 <tool id="fml_gfffmap" name="GFF-map" version="2.0.0">
   <description>features</description>
   <command interpreter="python"> 
-		gff_fmap.py $gff_input > $idmapping
+		gff_fmap.py $gff_input &gt; $idmapping
     </command>
   <inputs>
     <param format="gff3,gff" name="gff_input" type="data" label="Query file" help="Provide genome annotation file in GFF."/>
