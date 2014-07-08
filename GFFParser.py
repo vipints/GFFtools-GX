@@ -489,3 +489,17 @@ def create_missing_feature_type(p_feat, c_feat):
                                             gene_id = '' ))
     return p_feat, child_n_map 
 
+
+def high_level_parse(gff_file_name):
+    """
+    High level interface to parse GFF/GTF files
+
+    @args gff_file_name: input file name 
+    @type gff_file_name: str 
+    """
+    
+    # TODO 
+    # create an instance of the main parsing module and do the initial steps for each line 
+
+  
+
