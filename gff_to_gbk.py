@@ -38,7 +38,6 @@ def __main__():
     fasta_fh.close()
 
     #
-    #from Core import GFF
     #gff_rec = GFF.parse(gff_fname, fasta_rec)
     #gb_fh=open(gb_fname, "w")
     #SeqIO.write(gff_rec, gb_fh, "genbank")
