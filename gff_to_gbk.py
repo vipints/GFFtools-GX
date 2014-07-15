@@ -16,12 +16,14 @@ Copyright (C)
 
 import sys
 import helper
+import gffparser_bcbio
 
 from Bio import SeqIO
 from Bio.Alphabet import generic_dna
 
 def __main__():
     """
+    main wrapper
     """
 
     try:
@@ -37,12 +39,16 @@ def __main__():
     fasta_rec = SeqIO.to_dict(SeqIO.parse(fasta_fh, "fasta", generic_dna))
     fasta_fh.close()
 
-    #
-    #gff_rec = GFF.parse(gff_fname, fasta_rec)
-    #gb_fh=open(gb_fname, "w")
-    #SeqIO.write(gff_rec, gb_fh, "genbank")
-    #gb_fh.close()
-    #
+    gff_rec = gffparser_bcbio.parse(gff_fname, fasta_rec)
+    
+    try:
+        gb_fh = open(gb_fname, "w")
+    except:
+        print 'file not ready for writing %s' % gb_fname
+        sys.exit(-1)
+
+    SeqIO.write(gff_rec, gb_fh, "genbank")
+    gb_fh.close()
 
 if __name__=="__main__":
     __main__()
