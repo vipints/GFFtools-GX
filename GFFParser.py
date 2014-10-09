@@ -141,7 +141,7 @@ def Parse(ga_file):
 
         gff_info = dict()
         gff_info['info'] = dict(tags)
-        #gff_info["is_gff3"] = ftype
+        gff_info["is_gff3"] = ftype
         gff_info['chr'] = parts[0]
         gff_info['score'] = parts[5]
 
@@ -153,8 +153,9 @@ def Parse(ga_file):
             if parts[6] in ['?', '.']:
                 parts[6] = None 
             gff_info['strand'] = parts[6]
-
+            
             # key word according to the GFF spec.
+            # is_gff3 flag is false check this condition and get the attribute fields 
             if not ftype:
                 gff_info = spec_features_keywd(gff_info)
         
@@ -199,7 +200,7 @@ def Parse(ga_file):
         parent_map, child_map = create_missing_feature_type(parent_map, child_map)    
     
     # connecting parent child relations  
-    # // essentially the parent child features are here from any type of GTF/GFF2/GFF3 file
+    # essentially the parent child features are here from any type of GTF/GFF2/GFF3 file
     gene_mat = format_gene_models(parent_map, child_map) 
 
     return gene_mat 
@@ -213,14 +214,15 @@ def format_gene_models(parent_nf_map, child_nf_map):
     @args child_nf_map: transctipt and exon information are encoded 
     @type child_nf_map: collections defaultdict
     """
+
     g_cnt = 0 
     gene = np.zeros((len(parent_nf_map),), dtype = utils.init_gene())
 
     for pkey, pdet in parent_nf_map.items():
-
         # considering only gene features 
-        if not re.search(r'gene', pdet.get('type', '')):
-            continue 
+        #if not re.search(r'gene', pdet.get('type', '')):
+        #    continue 
+
         # infer the gene start and stop if not there in the 
         if not pdet.get('location', []):
             GNS, GNE = [], []
@@ -231,8 +233,8 @@ def format_gene_models(parent_nf_map, child_nf_map):
             GNS.sort()
             GNE.sort()
             pdet['location'] = [GNS[0], GNE[-1]]
-        orient = pdet.get('strand', '')
 
+        orient = pdet.get('strand', '')
         gene[g_cnt]['id'] = g_cnt +1 
         gene[g_cnt]['chr'] = pkey[0]
         gene[g_cnt]['source'] = pkey[1]
@@ -241,7 +243,7 @@ def format_gene_models(parent_nf_map, child_nf_map):
         gene[g_cnt]['stop'] = pdet.get('location', [])[1]
         gene[g_cnt]['strand'] = orient  
         gene[g_cnt]['score'] = pdet.get('score','')
-        
+
         # default value 
         gene[g_cnt]['is_alt_spliced'] = gene[g_cnt]['is_alt'] = 0
         if len(child_nf_map[pkey]) > 1:
