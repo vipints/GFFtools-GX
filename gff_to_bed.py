@@ -26,7 +26,10 @@ def writeBED(tinfo):
     """
 
     for ent1 in tinfo:
+        child_flag = False  
+
         for idx, tid in enumerate(ent1['transcripts']):
+            child_flag = True 
             exon_cnt = len(ent1['exons'][idx])
             exon_len = ''
             exon_cod = '' 
@@ -58,6 +61,26 @@ def writeBED(tinfo):
                             exon_len,
                             exon_cod]
                 print '\t'.join(out_print)  
+        
+        if not child_flag: # file just contains only a single parent type i.e, gff3 defines only one feature type 
+            score = '0' 
+            score = ent1['score'][0] if ent1['score'] else score
+
+            out_print = [ent1['chr'], 
+                        '%d' % int(ent1['start']), 
+                        '%d' % int(ent1['stop']),
+                        ent1['name'], 
+                        score, 
+                        ent1['strand'],
+                        '%d' % int(ent1['start']), 
+                        '%d' % int(ent1['stop']),
+                        '0',
+                        '1',
+                        '%d,' % (int(ent1['stop'])-int(ent1['start'])+1), 
+                        '0,']
+
+            print '\t'.join(out_print)  
+
     
 def __main__():
     try:
