@@ -46,6 +46,7 @@ def GFFWriter(gtf_content):
             t_stop = ent1['exons'][idx][-1][-1]
             t_type = ent1['transcript_type'][idx]
 
+            utr5_exons, utr3_exons = [], [] 
             if ent1['exons'][idx].any() and ent1['cds_exons'][idx].any():
                 utr5_exons, utr3_exons = helper.buildUTR(ent1['cds_exons'][idx], ent1['exons'][idx], strand)
 
