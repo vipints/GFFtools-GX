@@ -38,9 +38,13 @@ def GFFWriter(gtf_content):
         ID = ent1['name']
         Name = ent1['gene_info']['Name']
 
+        Name = ID if not Name else Name 
+
         print '%s\t%s\tgene\t%d\t%d\t.\t%s\t.\tID=%s;Name=%s' % (chr_name, source, start, stop, strand, ID, Name) 
 
         for idx, tid in enumerate(ent1['transcripts']):
+            print idx 
+            print tid 
 
             t_start = ent1['exons'][idx][0][0]
             t_stop = ent1['exons'][idx][-1][-1]

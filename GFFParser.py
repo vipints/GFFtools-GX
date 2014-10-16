@@ -117,7 +117,7 @@ def Parse(ga_file):
 
     for rec in ga_handle:
         rec = rec.strip('\n\r')
-
+        
         # skip empty line fasta identifier and commented line
         if not rec or rec[0] in  ['#', '>']:
             continue
@@ -153,12 +153,12 @@ def Parse(ga_file):
             if parts[6] in ['?', '.']:
                 parts[6] = None 
             gff_info['strand'] = parts[6]
-            
+
             # key word according to the GFF spec.
             # is_gff3 flag is false check this condition and get the attribute fields 
             if not ftype:
                 gff_info = spec_features_keywd(gff_info)
-        
+            
             # link the feature relationships
             if gff_info['info'].has_key('Parent'): 
                 for p in gff_info['info']['Parent']:
@@ -194,7 +194,7 @@ def Parse(ga_file):
                 #TODO how to handle plain records?
                 c = 1 
     ga_handle.close()
-    
+
     # depends on file type create parent feature  
     if not ftype:
         parent_map, child_map = create_missing_feature_type(parent_map, child_map)    
@@ -371,7 +371,7 @@ def format_gene_models(parent_nf_map, child_nf_map):
         gene[g_cnt]['cdsStop'] = CSTOP
         gene[g_cnt]['tss'] = TSSc
         gene[g_cnt]['cleave'] = CLV
-        
+
         gene[g_cnt]['gene_info'] = dict( ID = pkey[-1], 
                                 Name = pdet.get('name'), 
                                 Source = pkey[1]) 
@@ -454,6 +454,8 @@ def create_missing_feature_type(p_feat, c_feat):
             EPOS.append(gchild.get('location', [])[1]) 
             STRD = gchild.get('strand', '')
             SCR = gchild.get('score', '')
+            if gchild.get('type', '') == "gene": ## gencode GTF file has this problem 
+                continue
             TYP[gchild.get('type', '')] = 1
         SPOS.sort() 
         EPOS.sort()
