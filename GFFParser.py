@@ -132,7 +132,7 @@ def Parse(ga_file):
         ftype, tags = attribute_tags(parts[-1])
         if not tags: # skip the line if no attribute column.
 	        continue 
-        
+
         # extract fields  
         if parts[1]:
             tags["source"] = parts[1]
