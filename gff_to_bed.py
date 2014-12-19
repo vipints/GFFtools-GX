@@ -22,7 +22,7 @@ def limitBEDWrite(tinfo):
     Write a three column BED file 
     
     @args tinfo: list of genes 
-    @args tinfo: numpy object  
+    @type tinfo: numpy object  
     """
 
     for contig_id, feature in tinfo.items():
@@ -42,7 +42,7 @@ def writeBED(tinfo):
     writing result files in bed format 
 
     @args tinfo: list of genes 
-    @args tinfo: numpy object  
+    @type tinfo: numpy object  
     """
 
     for ent1 in tinfo:
