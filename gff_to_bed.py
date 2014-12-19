@@ -17,6 +17,26 @@ import re
 import sys
 import GFFParser
 
+def limitBEDWrite(tinfo):
+    """
+    Write a three column BED file 
+    
+    @args tinfo: list of genes 
+    @args tinfo: numpy object  
+    """
+
+    for contig_id, feature in tinfo.items():
+        uns_line = dict()
+        for tid, tloc in feature.items():
+            uns_line[(int(tloc[0])-1, int(tloc[1]))]=1
+        for ele in sorted(uns_line):
+            pline = [contig_id,
+                    str(ele[0]),
+                    str(ele[1])]
+
+            print '\t'.join(pline)
+
+
 def writeBED(tinfo):
     """
     writing result files in bed format 
