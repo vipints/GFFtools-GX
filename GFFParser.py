@@ -4,12 +4,11 @@ Extract genome annotation from a GFF (a tab delimited format for storing sequenc
 
 Requirements: 
     Numpy :- http://numpy.org/ 
-    Scipy :- http://scipy.org/ 
 
 Copyright (C)	
 
 2009-2012 Friedrich Miescher Laboratory of the Max Planck Society, Tubingen, Germany. 
-2012-2014 Memorial Sloan Kettering Cancer Center, New York City, USA.
+2012-2015 Memorial Sloan Kettering Cancer Center, New York City, USA.
 """
 
 import re
@@ -17,9 +16,8 @@ import os
 import sys
 import urllib
 import numpy as np
-import scipy.io as sio
-from collections import defaultdict
 import helper as utils 
+from collections import defaultdict
 
 def attribute_tags(col9):
     """ 
