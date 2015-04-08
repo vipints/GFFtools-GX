@@ -1,4 +1,4 @@
-<tool id="fml_bed2gff" name="BED-to-GFF" version="2.0.0">
+<tool id="fml_bed2gff" name="BED-to-GFF" version="2.1.0">
 	<description>converter</description>
 	<command interpreter="python">bed_to_gff.py $inf_bed  &gt; $gff_format 
 	</command> 
@@ -13,11 +13,7 @@
                 <param name="inf_bed" value="ccds_genes.bed" />
                 <output name="gff_format" file="ccds_genes.gff3" />
         </test>
-        <test>
-                <param name="inf_bed" value="hs_2009.bed" />
-                <output name="gff_format" file="hs_2009.gff3" />
-        </test>
-        </tests>
+    </tests>
   	<help>
 
 **What it does**
@@ -81,7 +77,7 @@ The additional BED fields (optional) are::
 
 **Copyright**
 
-2009-2014 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
+2009-2015 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
 
 Sreedharan VT, Schultheiss SJ, Jean G, Kahles A, Bohnert R, Drewe P, Mudrakarta P, Görnitz N, Zeller G, Rätsch G. Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics 10.1093/bioinformatics/btt731 (2014)
 

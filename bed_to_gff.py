@@ -2,14 +2,15 @@
 """
 Convert genome annotation data in a 12 column BED format to GFF3. 
 
-Usage: python bed_to_gff.py in.bed > out.gff
+Usage: 
+    python bed_to_gff.py in.bed > out.gff
 
 Requirement:
     helper.py : https://github.com/vipints/GFFtools-GX/blob/master/helper.py
 
 Copyright (C) 
     2009-2012 Friedrich Miescher Laboratory of the Max Planck Society, Tubingen, Germany.
-    2012-2014 Memorial Sloan Kettering Cancer Center New York City, USA.
+    2012-2015 Memorial Sloan Kettering Cancer Center New York City, USA.
 """
 
 import re
