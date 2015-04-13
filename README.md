@@ -5,12 +5,9 @@ A collection of tools for converting genome annotation between [GTF](https://gen
 
 ##### INTRODUCTION
 
-Several genome annotation centers provide their data in GTF, BED, GFF3 etc. I have few programs 
-they mainly deals with converting between GTF, BED and GFF3 formats. They are extensively tested 
-with files from different centers like ENSEMBL, UCSC, JGI and NCBI AceView. Please follow the 
-instructions below to clone these tools into your galaxy instance.
+Several genome annotation centers provide their data in GTF, BED, GFF3 etc. I have few programs, they mainly deals with converting between GTF, BED and GFF3 formats. They are extensively tested with files from different centers like [ENSEMBL](http://www.ensembl.org), [UCSC](https://genome.ucsc.edu/), [JGI](http://genome.jgi.doe.gov/) and [NCBI AceView](http://www.ncbi.nlm.nih.gov/IEB/Research/Acembly/HelpJan.html). Please follow the instructions below to clone these tools into your galaxy instance.
 
-###### CONTENTS
+##### CONTENTS
 
 Tool configuration files in *.xml format. 
 
