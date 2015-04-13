@@ -1,7 +1,7 @@
 GFFtools-GX 
 ===========
 
-A collection of tools for converting genome annotation between GTF (Gene Transfer Format), BED (Browser Extensible Data) and GFF (Generic Feature Format).
+A collection of tools for converting genome annotation between [GTF](https://genome.ucsc.edu/FAQ/FAQformat.html#format4), [BED](https://genome.ucsc.edu/FAQ/FAQformat.html#format1) and [GFF](https://genome.ucsc.edu/FAQ/FAQformat.html#format3).
 
 INTRODUCTION
 
