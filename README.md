@@ -4,6 +4,7 @@ GFFtools-GX
 A collection of tools for converting genome annotation between [GTF](https://genome.ucsc.edu/FAQ/FAQformat.html#format4), [BED](https://genome.ucsc.edu/FAQ/FAQformat.html#format1) and [GFF](https://genome.ucsc.edu/FAQ/FAQformat.html#format3).
 
 INTRODUCTION
+------------
 
 Several genome annotation centers provide their data in GTF, BED, GFF3 etc. I have few programs 
 they mainly deals with converting between GTF, BED and GFF3 formats. They are extensively tested 
