@@ -55,14 +55,14 @@ def __main__():
             parts[5] = '.' # replace the unknown strand with '.' 
 
         # bed2gff result line 
-        print '%s\tbed2gff\tgene\t%d\t%s\t%s\t%s\t.\tID=Gene:%s;Name=Gene:%s' % (parts[0], int(parts[1])+1, parts[2], parts[4], parts[5], parts[3], parts[3])
-        print '%s\tbed2gff\ttranscript\t%d\t%s\t%s\t%s\t.\tID=%s;Name=%s;Parent=Gene:%s' % (parts[0], int(parts[1])+1, parts[2], parts[4], parts[5], parts[3], parts[3], parts[3])
+        sys.stdout.write('%s\tbed2gff\tgene\t%d\t%s\t%s\t%s\t.\tID=Gene:%s;Name=Gene:%s\n' % (parts[0], int(parts[1])+1, parts[2], parts[4], parts[5], parts[3], parts[3]))
+        sys.stdout.write('%s\tbed2gff\ttranscript\t%d\t%s\t%s\t%s\t.\tID=%s;Name=%s;Parent=Gene:%s\n' % (parts[0], int(parts[1])+1, parts[2], parts[4], parts[5], parts[3], parts[3], parts[3]))
 
         st = int(parts[1])
         for ex_cnt in range(int(parts[-3])):
             start = st + int(rstarts[ex_cnt]) + 1
             stop = start + int(exon_lens[ex_cnt]) - 1
-            print '%s\tbed2gff\texon\t%d\t%d\t%s\t%s\t.\tParent=%s' % (parts[0], start, stop, parts[4], parts[5], parts[3])
+            sys.stdout.write('%s\tbed2gff\texon\t%d\t%d\t%s\t%s\t.\tParent=%s\n' % (parts[0], start, stop, parts[4], parts[5], parts[3]))
 
     bed_fh.close()
 
