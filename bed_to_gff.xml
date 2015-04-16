@@ -6,12 +6,12 @@
   		<param format="bed" name="inf_bed" type="data" label="Convert this query" help="Provide genome annotation in 12 column BED format."/>
     </inputs>
   	<outputs>
-  		<data format="gff3" name="gff_format" label="${tool.name} on ${on_string}: Converted" /> 
+  		<data format="gff" name="gff_format" label="${tool.name} on ${on_string}: Converted" /> 
   	</outputs>
 	<tests>
         <test>
-                <param name="inf_bed" value="ccds_genes.bed" />
-                <output name="gff_format" file="ccds_genes.gff3" />
+            <param name="inf_bed" value="CCDS30770.bed" />
+            <output name="gff_format" file="CCDS30770.gff" />
         </test>
     </tests>
   	<help>
@@ -39,6 +39,16 @@ This tool converts data from a 12 column UCSC wiggle BED format to GFF3 (scroll 
 
 --------
 
+**Reference**
+
+If **BED-to-GFF** is used to obtain results for scientific publications it should be cited as [1]_.
+
+.. [1] Sreedharan VT, Schultheiss SJ, Jean G et.al., Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics `10.1093/bioinformatics/btt731`_ (2014)
+
+.. _10.1093/bioinformatics/btt731: http://goo.gl/I75poH
+
+--------
+
 **About formats**
 
 **BED format** Browser Extensible Data format was designed at UCSC for displaying data tracks in the Genome Browser. It has three required fields and several additional optional ones:
@@ -61,7 +71,7 @@ The additional BED fields (optional) are::
    11. blockSizes - A comma-separated list of the block sizes. The number of items in this list should correspond to blockCount.
    12. blockStarts - A comma-separated list of block starts. All of the blockStart positions should be calculated relative to chromStart. The number of items in this list should correspond to blockCount.
 
-**GFF3 format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields::
+**GFF format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields::
 
     1. seqid - Must be a chromosome or scaffold or contig.
     2. source - The program that generated this feature.
@@ -77,9 +87,8 @@ The additional BED fields (optional) are::
 
 **Copyright**
 
+BED-to-GFF Wrapper Version 0.6 (Apr 2015)
 2009-2015 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
-
-Sreedharan VT, Schultheiss SJ, Jean G, Kahles A, Bohnert R, Drewe P, Mudrakarta P, Görnitz N, Zeller G, Rätsch G. Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics 10.1093/bioinformatics/btt731 (2014)
 
 	</help>
 </tool>
