@@ -1,8 +1,0 @@
-IX	gbk_to_gff	gene	687	3158	.	+	.	ID=AXL2;Name=AXL2
-IX	gbk_to_gff	.	687	3158	.	+	.	ID=Transcript:AXL2;Parent=AXL2
-IX	gbk_to_gff	CDS	687	3158	.	+	.	Parent=Transcript:AXL2
-IX	gbk_to_gff	exon	687	3158	.	+	.	Parent=Transcript:AXL2
-IX	gbk_to_gff	gene	3300	4037	.	-	.	ID=REV7;Name=REV7
-IX	gbk_to_gff	.	3300	4037	.	-	.	ID=Transcript:REV7;Parent=REV7
-IX	gbk_to_gff	CDS	3300	4037	.	-	.	Parent=Transcript:REV7
-IX	gbk_to_gff	exon	3300	4037	.	-	.	Parent=Transcript:REV7
