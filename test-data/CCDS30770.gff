@@ -1,4 +1,3 @@
-##gff-version 3
 chr1	bed2gff	gene	92149296	92327088	0	-	.	ID=Gene:CCDS30770.1;Name=Gene:CCDS30770.1
 chr1	bed2gff	transcript	92149296	92327088	0	-	.	ID=CCDS30770.1;Name=CCDS30770.1;Parent=Gene:CCDS30770.1
 chr1	bed2gff	exon	92149296	92149414	0	-	.	Parent=CCDS30770.1
