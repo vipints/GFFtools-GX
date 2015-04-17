@@ -1,17 +1,17 @@
-<tool id="fml_gbk2gff" name="GBK-to-GFF" version="2.0.0">
+<tool id="fml_gbk2gff" name="GBK-to-GFF" version="2.1.0">
   <description>converter</description>
   	<command interpreter="python">gbk_to_gff.py $inf_gbk &gt; $gff_format
   	</command>
   	<inputs>
-		<param format="gb,gbk,genbank,txt" name="inf_gbk" type="data" label="Convert this query" help="GenBank flat file format consists of an annotation section and a sequence section."/>
+		<param format="gb,gbk,genbank" name="inf_gbk" type="data" label="Convert this query" help="GenBank flat file format consists of an annotation section and a sequence section."/>
   	</inputs>
 	<outputs>
-		<data format="gff3" name="gff_format" label="${tool.name} on ${on_string}: Converted"/>
+		<data format="gff" name="gff_format" label="${tool.name} on ${on_string}: Converted"/>
   	</outputs>
 	<tests>
         <test>
-                <param name="inf_gbk" value="s_cerevisiae_SCU49845.gbk" />
-                <output name="gff_format" file="s_cerevisiae_SCU49845.gff3" />
+            <param name="inf_gbk" value="s_cerevisiae_SCU49845.gbk" />
+            <output name="gff_format" file="s_cerevisiae_SCU49845.gff" />
         </test>
 	</tests>
   	<help>
@@ -52,22 +52,31 @@ This tool converts data from a GenBank_ flat file format to GFF (scroll down for
 
 - Will be converted to GFF3::
 
-    ##gff-version 3
-    NM_001202705    gbk_to_gff chromosome      1       2406    .       +       1       ID=NM_001202705;Alias=2;Dbxref=taxon:3702;Name=NM_001202705
-    NM_001202705    gbk_to_gff gene    1       2406    .       +       1       ID=AT2G29630;Dbxref=GeneID:817513,TAIR:AT2G29630;Name=THIC
-    NM_001202705    gbk_to_gff mRNA    192     2126    .       +       1       ID=AT2G29630.t01;Parent=AT2G29630
-    NM_001202705    gbk_to_gff CDS     192     2126    .       +       1       ID=AT2G29630.p01;Parent=AT2G29630.t01
-    NM_001202705    gbk_to_gff exon    192     2126    .       +       1       Parent=AT2G29630.t01
+    NM_001202705    gbk2gff chromosome      1       2406    .       +       1       ID=NM_001202705;Alias=2;Dbxref=taxon:3702;Name=NM_001202705
+    NM_001202705    gbk2gff gene    1       2406    .       +       1       ID=AT2G29630;Dbxref=GeneID:817513,TAIR:AT2G29630;Name=THIC
+    NM_001202705    gbk2gff mRNA    192     2126    .       +       1       ID=AT2G29630.t01;Parent=AT2G29630
+    NM_001202705    gbk2gff CDS     192     2126    .       +       1       ID=AT2G29630.p01;Parent=AT2G29630.t01
+    NM_001202705    gbk2gff exon    192     2126    .       +       1       Parent=AT2G29630.t01
 
 ------
 
-**About formats** 
+**Reference**
+
+**GBK-to-GFF** is part of oqtans package and cited as [1]_.
+
+.. [1] Sreedharan VT, Schultheiss SJ, Jean G et.al., Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics (2014). `10.1093/bioinformatics/btt731`_
+
+.. _10.1093/bioinformatics/btt731: http://goo.gl/I75poH
+
+------
+
+**About file formats** 
 
 **GenBank format** An example of a GenBank record may be viewed here_
 
 .. _here: http://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html 
 
-**GFF3** Generic Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields::
+**GFF** Generic Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF lines have nine tab-separated fields::
 
     1. seqid - Must be a chromosome or scaffold or contig.
     2. source - The program that generated this feature.
@@ -83,9 +92,9 @@ This tool converts data from a GenBank_ flat file format to GFF (scroll down for
 
 **Copyright**
 
-2009-2014 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
+GBK-to-GFF Wrapper Version 0.6 (Apr 2015)
 
-Sreedharan VT, Schultheiss SJ, Jean G, Kahles A, Bohnert R, Drewe P, Mudrakarta P, Görnitz N, Zeller G, Rätsch G. Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics 10.1093/bioinformatics/btt731 (2014)
+2009-2015 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
 
 	</help>
 </tool>
