@@ -1,8 +1,8 @@
 IX	gbk2gff	gene	687	3158	.	+	.	ID=AXL2;Name=AXL2
-IX	gbk2gff	.	687	3158	.	+	.	ID=Transcript:AXL2;Parent=AXL2
+IX	gbk2gff	mRNA	687	3158	.	+	.	ID=Transcript:AXL2;Parent=AXL2
 IX	gbk2gff	CDS	687	3158	.	+	.	Parent=Transcript:AXL2
 IX	gbk2gff	exon	687	3158	.	+	.	Parent=Transcript:AXL2
 IX	gbk2gff	gene	3300	4037	.	-	.	ID=REV7;Name=REV7
-IX	gbk2gff	.	3300	4037	.	-	.	ID=Transcript:REV7;Parent=REV7
+IX	gbk2gff	mRNA	3300	4037	.	-	.	ID=Transcript:REV7;Parent=REV7
 IX	gbk2gff	CDS	3300	4037	.	-	.	Parent=Transcript:REV7
 IX	gbk2gff	exon	3300	4037	.	-	.	Parent=Transcript:REV7
