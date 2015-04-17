@@ -41,15 +41,15 @@ This tool converts data from a 12 column UCSC wiggle BED format to GFF3 (scroll 
 
 **Reference**
 
-If **BED-to-GFF** is used to obtain results for scientific publications it should be cited as [1]_.
+**BED-to-GFF** is part of oqtans package and cited as [1]_.
 
-.. [1] Sreedharan VT, Schultheiss SJ, Jean G et.al., Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics `10.1093/bioinformatics/btt731`_ (2014)
+.. [1] Sreedharan VT, Schultheiss SJ, Jean G et.al., Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics (2014). `10.1093/bioinformatics/btt731`_
 
 .. _10.1093/bioinformatics/btt731: http://goo.gl/I75poH
 
 --------
 
-**About formats**
+**About file formats**
 
 **BED format** Browser Extensible Data format was designed at UCSC for displaying data tracks in the Genome Browser. It has three required fields and several additional optional ones:
 
@@ -88,6 +88,7 @@ The additional BED fields (optional) are::
 **Copyright**
 
 BED-to-GFF Wrapper Version 0.6 (Apr 2015)
+
 2009-2015 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
 
 	</help>
