@@ -7,28 +7,27 @@ python gbk_to_gff.py in.gbk > out.gff
 
 Requirements:
     BioPython:- http://biopython.org/
-    helper.py : https://github.com/vipints/GFFtools-GX/blob/master/helper.py
+    helper.py:- https://github.com/vipints/GFFtools-GX/blob/master/helper.py
 
 Copyright (C) 
     2009-2012 Friedrich Miescher Laboratory of the Max Planck Society, Tubingen, Germany.
-    2012-2014 Memorial Sloan Kettering Cancer Center New York City, USA.
+    2012-2015 Memorial Sloan Kettering Cancer Center New York City, USA.
 """
 
 import os
 import re
 import sys
+import helper 
 import collections
 from Bio import SeqIO
-import helper 
 
 def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
     """
     Write the feature information
     """
-
     for gname, ginfo in genes.items():
         line = [str(chr_id), 
-                'gbk_to_gff',
+                'gbk2gff',
                 ginfo[3],
                 str(ginfo[0]),
                 str(ginfo[1]),
@@ -36,9 +35,9 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
                 ginfo[2],
                 '.',
                 'ID=%s;Name=%s' % (str(gname), str(gname))]
-        print '\t'.join(line) 
+        sys.stdout.write('\t'.join(line)+"\n") 
         ## construct the transcript line is not defined in the original file 
-        t_line = [str(chr_id), 'gbk_to_gff', source, 0, 1, '.', ginfo[2], '.'] 
+        t_line = [str(chr_id), 'gbk2gff', source, 0, 1, '.', ginfo[2], '.'] 
 
         if not transcripts:
             t_line.append('ID=Transcript:%s;Parent=%s' % (str(gname), str(gname)))
@@ -49,7 +48,12 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
             elif cds:
                 t_line[3] = str(cds[gname][0][0])
                 t_line[4] = str(cds[gname][0][-1])
-            print '\t'.join(t_line) 
+
+            if not cds:
+                t_line[2] = 'transcript'
+            else:
+                t_line[2] = 'mRNA'
+            sys.stdout.write('\t'.join(t_line)+"\n") 
 
             if exons:
                 exon_line_print(t_line, exons[gname], 'Transcript:'+str(gname), 'exon')
@@ -65,7 +69,7 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
                 t_line[3] = str(idx[0])
                 t_line[4] = str(idx[1])
                 t_line.append('ID='+str(idx[2])+';Parent='+str(gname))
-                print '\t'.join(t_line) 
+                sys.stdout.write('\t'.join(t_line)+"\n") 
                 
                 ## feature line print call 
                 if exons:
@@ -77,7 +81,7 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
 
     if len(genes) == 0: ## feature entry with fragment information 
         
-        line = [str(chr_id), 'gbk_to_gff', source, 0, 1, '.', orient, '.'] 
+        line = [str(chr_id), 'gbk2gff', source, 0, 1, '.', orient, '.'] 
         fStart = fStop = None 
 
         for eid, ex in cds.items(): 
@@ -94,7 +98,7 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
             line[3] = str(fStart)
             line[4] = str(fStop)
             line.append('ID=Unknown_Gene_' + str(unk) + ';Name=Unknown_Gene_' + str(unk))
-            print "\t".join(line)
+            sys.stdout.write('\t'.join(line)+"\n") 
 
             if not cds:
                 line[2] = 'transcript'
@@ -102,7 +106,7 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
                 line[2] = 'mRNA'
 
             line[8] = 'ID=Unknown_Transcript_' + str(unk) + ';Parent=Unknown_Gene_' + str(unk)
-            print "\t".join(line)
+            sys.stdout.write('\t'.join(line)+"\n") 
            
             if exons:
                 exon_line_print(line, cds[None], 'Unknown_Transcript_' + str(unk), 'exon')
@@ -116,17 +120,18 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
 
     return unk
 
+
 def exon_line_print(temp_line, trx_exons, parent, ftype):
     """
     Print the EXON feature line 
     """
-
     for ex in trx_exons:
         temp_line[2] = ftype
         temp_line[3] = str(ex[0])
         temp_line[4] = str(ex[1])
         temp_line[8] = 'Parent=%s' % parent
-        print '\t'.join(temp_line)
+        sys.stdout.write('\t'.join(temp_line)+"\n") 
+
 
 def gbk_parse(fname):
     """
@@ -135,12 +140,10 @@ def gbk_parse(fname):
     @args fname: gbk file name 
     @type fname: str
     """
-
     fhand = helper.open_file(gbkfname)
     unk = 1 
 
     for record in SeqIO.parse(fhand, "genbank"):
-
         gene_tags = dict()
         tx_tags = collections.defaultdict(list) 
         exon = collections.defaultdict(list) 
