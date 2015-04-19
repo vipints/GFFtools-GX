@@ -1,4 +1,4 @@
-<tool id="fml_gff2bed" name="GFF-to-BED" version="2.0.0">
+<tool id="fml_gff2bed" name="GFF-to-BED" version="2.1.0">
 	<description>converter</description> 
 	<command interpreter="python">gff_to_bed.py $inf_gff &gt; $bed_format 
 	</command> 
@@ -10,14 +10,10 @@
   	</outputs>
 	<tests>
         <test>
-                <param name="inf_gff" value="Aly_JGI.gff3" />
-                <output name="bed_format" file="Aly_JGI.bed" />
+            <param name="inf_gff" value="MB7_3R.gff3" />
+            <output name="bed_format" file="MB7_3R.bed" />
         </test>
-        <test>
-                <param name="inf_gff" value="MB7_3R.gff3" />
-                <output name="bed_format" file="MB7_3R.bed" />
-        </test>
-        </tests>
+    </tests>
   	<help>
 
 **What it does**
@@ -43,9 +39,19 @@ This tool converts gene transcript annotation from GTF or GFF or GFF3 to UCSC wi
 
 --------
 
-**About formats**
+**Reference**
 
-**GFF3 format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields::
+**GFF-to-BED** is part of oqtans package and cited as [1]_.
+
+.. [1] Sreedharan VT, Schultheiss SJ, Jean G et.al., Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics (2014). `10.1093/bioinformatics/btt731`_
+
+.. _10.1093/bioinformatics/btt731: http://goo.gl/I75poH
+
+--------
+
+**About file formats**
+
+**GFF format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF lines have nine tab-separated fields::
 
 
     1. seqid - Must be a chromosome or scaffold or contig.
@@ -82,9 +88,9 @@ The additional BED fields (optional) are::
 
 **Copyright**
 
-2009-2014 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
+GFF-to-BED Wrapper Version 0.6 (Apr 2015)
 
-Sreedharan VT, Schultheiss SJ, Jean G, Kahles A, Bohnert R, Drewe P, Mudrakarta P, Görnitz N, Zeller G, Rätsch G. Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics 10.1093/bioinformatics/btt731 (2014)
+2009-2015 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
 
 	</help>
 </tool>
