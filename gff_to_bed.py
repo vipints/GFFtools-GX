@@ -10,7 +10,7 @@ Requirement:
 
 Copyright (C) 
     2009-2012 Friedrich Miescher Laboratory of the Max Planck Society, Tubingen, Germany.
-    2012-2014 Memorial Sloan Kettering Cancer Center New York City, USA.
+    2012-2015 Memorial Sloan Kettering Cancer Center New York City, USA.
 """
 
 import re
@@ -34,7 +34,7 @@ def limitBEDWrite(tinfo):
                     str(ele[0]),
                     str(ele[1])]
 
-            print '\t'.join(pline)
+            sys.stdout.write('\t'.join(pline)+"\n")
 
 
 def writeBED(tinfo):
@@ -66,13 +66,13 @@ def writeBED(tinfo):
                     rel_stop = int(ex_cod[1])
             
             if exon_len:
-                score = '0' 
-                score = ent1['score'][0] if ent1['score'] else score
+                score = 0 
+                score = ent1['transcript_score'][idx] if ent1['transcript_score'].any() else score ## getting the transcript score 
                 out_print = [ent1['chr'],
                             str(rel_start),
                             str(rel_stop),
                             tid[0],
-                            score, 
+                            str(score), 
                             ent1['strand'], 
                             str(rel_start),
                             str(rel_stop),
@@ -80,17 +80,17 @@ def writeBED(tinfo):
                             str(exon_cnt),
                             exon_len,
                             exon_cod]
-                print '\t'.join(out_print)  
+                sys.stdout.write('\t'.join(out_print)+"\n")
         
         if not child_flag: # file just contains only a single parent type i.e, gff3 defines only one feature type 
-            score = '0' 
-            score = ent1['score'][0] if ent1['score'] else score
+            score = 0 
+            score = ent1['transcript_score'][0] if ent1['transcript_score'].any() else score
 
             out_print = [ent1['chr'], 
                         '%d' % int(ent1['start']), 
                         '%d' % int(ent1['stop']),
                         ent1['name'], 
-                        score, 
+                        str(score), 
                         ent1['strand'],
                         '%d' % int(ent1['start']), 
                         '%d' % int(ent1['stop']),
@@ -99,7 +99,7 @@ def writeBED(tinfo):
                         '%d,' % (int(ent1['stop'])-int(ent1['start'])+1), 
                         '0,']
 
-            print '\t'.join(out_print)  
+            sys.stdout.write('\t'.join(out_print)+"\n")
 
     
 def __main__():
