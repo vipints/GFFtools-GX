@@ -260,6 +260,7 @@ def format_gene_models(parent_nf_map, child_nf_map):
         CLV = np.zeros((dim,), dtype=np.object)
         CSTOP = np.zeros((dim,), dtype=np.object)
         TSTAT = np.zeros((dim,), dtype=np.object)
+        TSCORE = np.zeros((dim,), dtype=np.object)
 
         # fetching corresponding transcripts 
         for xq, Lv1 in enumerate(child_nf_map[pkey]):
@@ -272,6 +273,7 @@ def format_gene_models(parent_nf_map, child_nf_map):
             TR_TYP[xq] = np.array(TYPE) if TYPE else TR_TYP[xq]
 
             orient = Lv1.get('strand', '')
+            tr_score = Lv1.get('score', '')
 
             # fetching different sub-features 
             child_feat = defaultdict(list)
@@ -356,6 +358,7 @@ def format_gene_models(parent_nf_map, child_nf_map):
             CSTOP[xq] = np.array(cdsStop)
             TSSc[xq] = np.array(TSS)
             CLV[xq] = np.array(cleave)
+            TSCORE[xq] = tr_score 
             
         # add sub-features to the parent gene feature
         gene[g_cnt]['transcript_status'] = TSTAT
@@ -369,6 +372,7 @@ def format_gene_models(parent_nf_map, child_nf_map):
         gene[g_cnt]['cdsStop'] = CSTOP
         gene[g_cnt]['tss'] = TSSc
         gene[g_cnt]['cleave'] = CLV
+        gene[g_cnt]['transcript_score'] = TSCORE
 
         gene[g_cnt]['gene_info'] = dict( ID = pkey[-1], 
                                 Name = pdet.get('name'), 
@@ -380,7 +384,6 @@ def format_gene_models(parent_nf_map, child_nf_map):
         gene[g_cnt]['name2'] = []
         gene[g_cnt]['chr_num'] = []
         gene[g_cnt]['paralogs'] = []
-        gene[g_cnt]['transcript_info'] = []
         gene[g_cnt]['transcript_valid'] = []
         gene[g_cnt]['exons_confirmed'] = []
         gene[g_cnt]['tis_conf'] = []

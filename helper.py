@@ -33,6 +33,7 @@ def init_gene():
             ('transcripts', numpy.dtype),
             ('transcript_type', numpy.dtype),
             ('transcript_info', numpy.dtype),
+            ('transcript_score', numpy.dtype),
             ('transcript_status', numpy.dtype),
             ('transcript_valid', numpy.dtype),
             ('exons', numpy.dtype),
