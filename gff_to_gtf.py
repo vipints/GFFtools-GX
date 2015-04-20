@@ -9,7 +9,7 @@ Requirement:
 
 Copyright (C) 
     2009-2012 Friedrich Miescher Laboratory of the Max Planck Society, Tubingen, Germany.
-    2012-2014 Memorial Sloan Kettering Cancer Center New York City, USA.
+    2012-2015 Memorial Sloan Kettering Cancer Center New York City, USA.
 """
 
 import re
@@ -41,26 +41,26 @@ def printGTF(tinfo):
                     start_codon = (cds_exons[-1][1]-2, cds_exons[-1][1])
                     stop_codon = (cds_exons[0][0], cds_exons[0][0]+2)
             else:
-                print 'STRAND information missing - %s, skip the transcript - %s' % (ent1['strand'], tid[0]) 
+                sys.stdout.write('STRAND information missing - %s, skip the transcript - %s\n' % (ent1['strand'], tid[0]))
                 pass 
                 
             last_cds_cod = 0 
             for idz, ex_cod in enumerate(exons):
 
-                print '%s\t%s\texon\t%d\t%d\t.\t%s\t.\tgene_id "%s"; transcript_id "%s"; exon_number "%d"; gene_name "%s"; ' % (ent1['chr'], ent1['source'], ex_cod[0], ex_cod[1], ent1['strand'], ent1['name'], tid[0], idz+1, ent1['gene_info']['Name'])
+                sys.stdout.write('%s\t%s\texon\t%d\t%d\t.\t%s\t.\tgene_id "%s"; transcript_id "%s"; exon_number "%d"; gene_name "%s"; \n' % (ent1['chr'], ent1['source'], ex_cod[0], ex_cod[1], ent1['strand'], ent1['name'], tid[0], idz+1, ent1['gene_info']['Name']))
 
                 if cds_exons.any():
                     try:
-                        print '%s\t%s\tCDS\t%d\t%d\t.\t%s\t%d\tgene_id "%s"; transcript_id "%s"; exon_number "%d"; gene_name "%s"; ' % (ent1['chr'], ent1['source'], cds_exons[idz][0], cds_exons[idz][1], ent1['strand'], cds_exons[idz][2], ent1['name'], tid[0], idz+1, ent1['gene_info']['Name'])
+                        sys.stdout.write('%s\t%s\tCDS\t%d\t%d\t.\t%s\t%d\tgene_id "%s"; transcript_id "%s"; exon_number "%d"; gene_name "%s"; \n' % (ent1['chr'], ent1['source'], cds_exons[idz][0], cds_exons[idz][1], ent1['strand'], cds_exons[idz][2], ent1['name'], tid[0], idz+1, ent1['gene_info']['Name']))
                         last_cds_cod = idz 
                     except:
                         pass 
 
                     if idz == 0:
-                        print '%s\t%s\tstart_codon\t%d\t%d\t.\t%s\t%d\tgene_id "%s"; transcript_id "%s"; exon_number "%d"; gene_name "%s"; ' % (ent1['chr'], ent1['source'], start_codon[0], start_codon[1], ent1['strand'], cds_exons[idz][2], ent1['name'], tid[0], idz+1, ent1['gene_info']['Name'])
+                        sys.stdout.write('%s\t%s\tstart_codon\t%d\t%d\t.\t%s\t%d\tgene_id "%s"; transcript_id "%s"; exon_number "%d"; gene_name "%s"; \n' % (ent1['chr'], ent1['source'], start_codon[0], start_codon[1], ent1['strand'], cds_exons[idz][2], ent1['name'], tid[0], idz+1, ent1['gene_info']['Name']))
 
             if stop_codon:
-                print '%s\t%s\tstop_codon\t%d\t%d\t.\t%s\t%d\tgene_id "%s"; transcript_id "%s"; exon_number "%d"; gene_name "%s"; ' % (ent1['chr'], ent1['source'], stop_codon[0], stop_codon[1], ent1['strand'], cds_exons[last_cds_cod][2], ent1['name'], tid[0], idz+1, ent1['gene_info']['Name'])
+                sys.stdout.write('%s\t%s\tstop_codon\t%d\t%d\t.\t%s\t%d\tgene_id "%s"; transcript_id "%s"; exon_number "%d"; gene_name "%s"; \n' % (ent1['chr'], ent1['source'], stop_codon[0], stop_codon[1], ent1['strand'], cds_exons[last_cds_cod][2], ent1['name'], tid[0], idz+1, ent1['gene_info']['Name']))
 
     
 if __name__ == "__main__": 
