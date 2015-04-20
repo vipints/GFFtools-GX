@@ -1,49 +1,37 @@
-<tool id="fml_gtf2gff" name="GTF-to-GFF" version="2.0.0">
+<tool id="fml_gtf2gff" name="GTF-to-GFF" version="2.1.0">
 	<description>converter</description> 
 	<command interpreter="python">gtf_to_gff.py $inf_gtf &gt; $gff3_format 
 	</command> 
 	<inputs>
   		<param format="gtf" name="inf_gtf" type="data" label="Convert this query" help="Provide genome annotation file in GTF."/>
-        </inputs>
+    </inputs>
   	<outputs>
-  		<data format="gff3" name="gff3_format" label="${tool.name} on ${on_string}: Converted" /> 
+  		<data format="gff" name="gff3_format" label="${tool.name} on ${on_string}: Converted" /> 
   	</outputs>
-	    <tests>
-        	<test>
-                <param name="inf_gtf" value="UCSC_transcripts.gtf" />
-                <output name="gff3_format" file="UCSC_transcripts.gff3" />
-        	</test>
-        	<test>
-                <param name="inf_gtf" value="JGI_genes.gtf" />
-                <output name="gff3_format" file="JGI_genes.gff3" />
-        	</test>
-        	<test>
-                <param name="inf_gtf" value="ENSEMBL_mm9.gtf" />
-                <output name="gff3_format" file="ENSEMBL_mm9.gff3" />
-        	</test>
-        	<test>
-                <param name="inf_gtf" value="AceView_ncbi_37.gtf" />
-                <output name="gff3_format" file="AceView_ncbi_37.gff3" />
-        	</test>
-        </tests>
+	<tests>
+       	<test>
+            <param name="inf_gtf" value="aceview_hs_37.gtf" />
+            <output name="gff3_format" file="aceview_hs_37.gff3" />
+       	</test>
+    </tests>
   	<help>
 
 **What it does**
 
-This tool converts data from GTF to a valid GFF3 file (scroll down for format description).
+This tool converts data from GTF to a valid GFF file (scroll down for format description).
 
 --------
 
 **Example**
 
-- The following data in GTF format::
+- The following data in GTF::
 
 	17      protein_coding  exon    7255208 7258258 .       +       .        gene_id "ENSG00000213859"; transcript_id "ENST00000333751"; exon_number "1"; gene_name "KCTD11"; transcript_name "KCTD11-001";
 	17      protein_coding  CDS     7256262 7256957 .       +       0        gene_id "ENSG00000213859"; transcript_id "ENST00000333751"; exon_number "1"; gene_name "KCTD11"; transcript_name "KCTD11-001"; protein_id "ENSP00000328352";
 	17      protein_coding  start_codon     7256262 7256264 .       +       0        gene_id "ENSG00000213859"; transcript_id "ENST00000333751"; exon_number "1"; gene_name "KCTD11"; transcript_name "KCTD11-001";
 	17      protein_coding  stop_codon      7256958 7256960 .       +       0        gene_id "ENSG00000213859"; transcript_id "ENST00000333751"; exon_number "1"; gene_name "KCTD11"; transcript_name "KCTD11-001";
 
-- Will be converted to GFF3 format::
+- Will be converted to GFF3::
 
 	##gff-version 3
 	17      protein_coding  gene    7255208 7258258 .       +       .       ID=ENSG00000213859;Name=KCTD11
@@ -55,6 +43,16 @@ This tool converts data from GTF to a valid GFF3 file (scroll down for format de
 	17      protein_coding  exon    7255208 7258258 .       +       .       Parent=ENST00000333751
 
 --------
+
+**Reference**
+
+**GTF-to-GFF** is part of oqtans package and cited as [1]_.
+
+.. [1] Sreedharan VT, Schultheiss SJ, Jean G et.al., Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics (2014). `10.1093/bioinformatics/btt731`_
+
+.. _10.1093/bioinformatics/btt731: http://goo.gl/I75poH
+
+------
 
 **About formats**
 
@@ -70,7 +68,7 @@ This tool converts data from GTF to a valid GFF3 file (scroll down for format de
     8. frame - If the feature is a coding exon, frame should be a number between 0-2 that represents the reading frame of the first base.
     9. attributes - These attributes are designed for handling multiple transcripts from the same genomic region.
 
-**GFF3 format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF3 lines have nine tab-separated fields::
+**GFF format** General Feature Format is a format for describing genes and other features associated with DNA, RNA and Protein sequences. GFF lines have nine tab-separated fields::
 
     1. seqid - Must be a chromosome or scaffold.
     2. source - The program that generated this feature.
@@ -86,9 +84,9 @@ This tool converts data from GTF to a valid GFF3 file (scroll down for format de
 
 **Copyright**
 
-2009-2014 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
+GTF-to-GFF Wrapper Version 0.6 (Apr 2015)
 
-Sreedharan VT, Schultheiss SJ, Jean G, Kahles A, Bohnert R, Drewe P, Mudrakarta P, Görnitz N, Zeller G, Rätsch G. Oqtans: the RNA-seq workbench in the cloud for complete and reproducible quantitative transcriptome analysis. Bioinformatics 10.1093/bioinformatics/btt731 (2014)
+2009-2015 Max Planck Society, University of Tübingen &amp; Memorial Sloan Kettering Cancer Center
 
 	</help>
 </tool>
