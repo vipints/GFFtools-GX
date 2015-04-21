@@ -31,7 +31,7 @@ def limitBEDWrite(tinfo):
             uns_line[(int(tloc[0])-1, int(tloc[1]))]=1
         for ele in sorted(uns_line):
             pline = [contig_id,
-                    str(ele[0]),
+                    str(ele[0]-1),
                     str(ele[1])]
 
             sys.stdout.write('\t'.join(pline)+"\n")
@@ -59,10 +59,10 @@ def writeBED(tinfo):
                 exon_len += '%d,' % (ex_cod[1]-ex_cod[0]+1)
                 if idz == 0: #calculate the relative start position 
                     exon_cod += '0,'
-                    rel_start = int(ex_cod[0])
+                    rel_start = int(ex_cod[0])-1 
                     rel_stop = ex_cod[1]
                 else:
-                    exon_cod += '%d,' % (ex_cod[0]-rel_start)
+                    exon_cod += '%d,' % (ex_cod[0]-1-rel_start) ## shifting the coordinates to zero 
                     rel_stop = int(ex_cod[1])
             
             if exon_len:
@@ -87,7 +87,7 @@ def writeBED(tinfo):
             score = ent1['transcript_score'][0] if ent1['transcript_score'].any() else score
 
             out_print = [ent1['chr'], 
-                        '%d' % int(ent1['start']), 
+                        '%d' % int(ent1['start'])-1, 
                         '%d' % int(ent1['stop']),
                         ent1['name'], 
                         str(score), 
