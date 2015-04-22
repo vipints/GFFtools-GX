@@ -60,7 +60,7 @@ def writeBED(tinfo):
                 if idz == 0: #calculate the relative start position 
                     exon_cod += '0,'
                     rel_start = int(ex_cod[0])-1 
-                    rel_stop = ex_cod[1]
+                    rel_stop = int(ex_cod[1])
                 else:
                     exon_cod += '%d,' % (ex_cod[0]-1-rel_start) ## shifting the coordinates to zero 
                     rel_stop = int(ex_cod[1])
