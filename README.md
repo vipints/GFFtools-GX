@@ -1,34 +1,23 @@
 GFFtools-GX 
 ===========
 
-A collection of tools for converting genome annotation between [GTF](https://genome.ucsc.edu/FAQ/FAQformat.html#format4), [BED](https://genome.ucsc.edu/FAQ/FAQformat.html#format1) and [GFF](https://genome.ucsc.edu/FAQ/FAQformat.html#format3).
+A collection of tools for converting genome annotation between [GTF](https://genome.ucsc.edu/FAQ/FAQformat.html#format4), [BED](https://genome.ucsc.edu/FAQ/FAQformat.html#format1), [GenBank](http://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html) and [GFF](https://genome.ucsc.edu/FAQ/FAQformat.html#format3).
 
 ##### INTRODUCTION
 
-Several genome annotation centers provide their data in GTF, BED, GFF3 etc. I have few programs, they mainly deals with converting between GTF, BED and GFF3 formats. They are extensively tested with files from different centers like [ENSEMBL](http://www.ensembl.org), [UCSC](https://genome.ucsc.edu/), [JGI](http://genome.jgi.doe.gov/) and [NCBI AceView](http://www.ncbi.nlm.nih.gov/IEB/Research/Acembly/HelpJan.html). Please follow the instructions below to clone these tools into your galaxy instance.
+Several genome annotation centers provide their data in GTF, BED, GFF and GenBank format. I have few programs, they mainly deals with converting between GTF, BED GenBank and GFF formats. They are extensively tested with files from different centers like [ENSEMBL](http://www.ensembl.org), [UCSC](https://genome.ucsc.edu/), [JGI](http://genome.jgi.doe.gov/) and [NCBI AceView](http://www.ncbi.nlm.nih.gov/IEB/Research/Acembly/HelpJan.html). These programs can be easily integrated into your galaxy instance.
 
 ##### CONTENTS
 
-Tool configuration files in *.xml format. 
+Included utilities are: 
 
-    gtf_to_gff.xml
-    gff_to_gtf.xml
-    bed_to_gff.xml
-    gff_to_bed.xml
-    gbk_to_gff.xml
-    bed_to_gff.xml
-    
-Python based scripts. 
+ BED-to-GFF: convert data from a 12 column UCSC wiggle BED format to GFF
+ GBK-to-GFF: convert data from genbank format to GFF
+ GFF-to-BED: convert data from GFF to 12 column BED format
+ GFF-to-GTF: convert data from GFF to GTF 
+ GTF-to-GFF: convert data from GTF to valid GFF
 
-    gtf_to_gff.py: convert data from GTF to valid GFF3.
-    gff_to_gtf.py: convert data from GFF3 to GTF.
-    bed_to_gff.py: convert data from a 12 column UCSC wiggle BED format to GFF3.
-    gff_to_bed.py: convert gene transcript annotation from GFF3 to UCSC wiggle 12 column BED format.
-    gbk_to_gff.py: convert data from genbank format to GFF. 
-    GFFParser.py: Parse GFF/GTF files.  
-    helper.py: Utility functions.
-
-test-data: Test data set. (move to your galaxy_root_folder/test-data/)
+test-data: Test data set. (move to your galaxy-root-folder/test-data/)
     
     You may need to move the test files into your test-data directory so galaxy can find them. 
     If you want to run the functional tests eg as: 
