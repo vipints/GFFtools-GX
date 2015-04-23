@@ -11,11 +11,11 @@ Several genome annotation centers provide their data in GTF, BED, GFF and GenBan
 
 Included utilities are: 
 
- BED-to-GFF: convert data from a 12 column UCSC wiggle BED format to GFF
- GBK-to-GFF: convert data from genbank format to GFF
- GFF-to-BED: convert data from GFF to 12 column BED format
- GFF-to-GTF: convert data from GFF to GTF 
- GTF-to-GFF: convert data from GTF to valid GFF
+    BED-to-GFF: convert data from a 12 column UCSC wiggle BED format to GFF
+    GBK-to-GFF: convert data from genbank format to GFF
+    GFF-to-BED: convert data from GFF to 12 column BED format
+    GFF-to-GTF: convert data from GFF to GTF 
+    GTF-to-GFF: convert data from GTF to valid GFF
 
 test-data: Test data set. (move to your galaxy-root-folder/test-data/)
     
