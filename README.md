@@ -38,8 +38,10 @@ I can be reached at vipin [at] cbio.mskcc.org
 ##### LICENSE
 
 Copyright (c) 2009-2012, Friedrich Miescher Laboratory of the Max Planck Society
+
               2013-2015, Memorial Sloan Kettering Cancer Center
-              Vipin T Sreedharan <vipin[at]cbio.mskcc.org>  
+
+              Vipin T Sreedharan <vipin@cbio.mskcc.org>  
 All rights reserved.
 
 Licensed under the BSD 2-Clause License: <http://opensource.org/licenses/BSD-2-Clause>
