@@ -1,5 +1,8 @@
 <tool id="fml_gbk2gff" name="GBK-to-GFF" version="2.1.0">
-  <description>converter</description>
+    <description>converter</description>
+    <requirements>
+        <requirement type="package" version="1.65">biopython</requirement>
+    </requirements>
   	<command interpreter="python">gbk_to_gff.py $inf_gbk &gt; $gff_format
   	</command>
   	<inputs>
