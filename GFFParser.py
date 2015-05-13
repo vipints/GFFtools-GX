@@ -190,7 +190,7 @@ def Parse(ga_file):
                                             name = tags.get('Name', [''])[0])
             elif rec_category == 'record':
                 #TODO how to handle plain records?
-                c = 1 
+                considering_soon = 1 
     ga_handle.close()
 
     # depends on file type create parent feature  
