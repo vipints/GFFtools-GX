@@ -6,8 +6,8 @@ Common utility functions
 import os 
 import re
 import sys 
-import gzip 
 import bz2
+import gzip 
 import numpy 
 
 def init_gene():
