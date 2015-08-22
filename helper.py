@@ -74,10 +74,15 @@ def open_file(fname):
     @type fname: str
     """
 
+    if os.path.isfile(fname):
+        file_prefx, ext = os.path.splitext(fname)
+    else:
+        exit("error: the provided file %s is not available to read. Please check!" % fname)
+    
     try:
-        if os.path.splitext(fname)[1] == ".gz":
+        if ext == ".gz":
             FH = gzip.open(fname, 'rb')
-        elif os.path.splitext(fname)[1] == ".bz2":
+        elif ext == ".bz2":
             FH = bz2.BZ2File(fname, 'rb')
         else:
             FH = open(fname, 'rU')
