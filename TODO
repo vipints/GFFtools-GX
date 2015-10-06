@@ -1,0 +1,13 @@
+   -sync the new field transcript_score to the main gfftools 
+
+1) automatic tool testing via toolshed 
+    
+2) installation from toolshed 
+
+3) required modules 
+    
+    -biopython - point to the package in iuc maintained 
+
+4) define datatype 
+
+    -gbk,gb,genbank define datatype
