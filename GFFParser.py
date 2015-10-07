@@ -179,7 +179,8 @@ def Parse(ga_file):
                                             strand = gff_info['strand'], 
                                             score = gff_info['score'], 
                                             ID = gff_info['id'],
-                                            gene_id = gff_info['info'].get('GParent', '') 
+                                            gene_name = gff_info['info'].get('gene_name', [''])[0],
+                                            gene_id = gff_info['info'].get('GParent', [''])[0] 
                                             ))
             elif rec_category == 'parent':
                 parent_map[(gff_info['chr'], gff_info['info']['source'], gff_info['id'])] = dict( 
@@ -450,7 +451,8 @@ def create_missing_feature_type(p_feat, c_feat):
         SPOS, EPOS = [], [] 
         TYP = dict()
         for gchild in det:
-            GID = gchild.get('gene_id', [''])[0] 
+            GID = gchild.get('gene_id', '') 
+            GNAME = gchild.get('gene_name', '') 
             SPOS.append(gchild.get('location', [])[0]) 
             EPOS.append(gchild.get('location', [])[1]) 
             STRD = gchild.get('strand', '')
@@ -474,7 +476,7 @@ def create_missing_feature_type(p_feat, c_feat):
         p_feat[(fid[0], fid[1], GID)] = dict( type = 'gene',
                                             location = [], ## infer location based on multiple transcripts  
                                             strand = STRD,
-                                            name = GID )
+                                            name = GNAME )
         # level -2 feature type 
         child_n_map[(fid[0], fid[1], GID)].append(
                                             dict( type = transcript_type,
