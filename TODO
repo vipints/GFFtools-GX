@@ -1,8 +1,9 @@
    -sync the new field transcript_score to the main gfftools 
+   -depends on the availability of different key,value pairs from gtf like file
 
-1) automatic tool testing via toolshed 
+1) automatic tool testing via toolshed - this is fixed  
     
-2) installation from toolshed 
+2) installation from toolshed - to be looked at the garage machine  
 
 3) required modules 
     
