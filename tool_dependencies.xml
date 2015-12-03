@@ -2,4 +2,7 @@
      <package name="biopython" version="1.65">
         <repository name="package_biopython_1_65" owner="biopython" />
     </package>
+    <package name="numpy" version="1.8.1">
+        <repository name="package_numpy_1_8" owner="iuc" prior_installation_required="True" />
+    </package>
 </tool_dependency>
