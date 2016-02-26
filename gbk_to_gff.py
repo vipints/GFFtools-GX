@@ -37,7 +37,7 @@ def feature_table(chr_id, source, orient, genes, transcripts, cds, exons, unk):
                 'ID=%s;Name=%s' % (str(gname), str(gname))]
         sys.stdout.write('\t'.join(line)+"\n") 
         ## construct the transcript line is not defined in the original file 
-        t_line = [str(chr_id), 'gbk2gff', source, 0, 1, '.', ginfo[2], '.'] 
+        t_line = [str(chr_id), 'gbk2gff', source, '0', '1', '.', ginfo[2], '.'] 
 
         if not transcripts:
             t_line.append('ID=Transcript:%s;Parent=%s' % (str(gname), str(gname)))
