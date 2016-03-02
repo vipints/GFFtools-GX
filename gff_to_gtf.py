@@ -14,6 +14,7 @@ Copyright (C)
 
 import re
 import sys
+import numpy
 import GFFParser
 
 def printGTF(tinfo):
@@ -28,6 +29,8 @@ def printGTF(tinfo):
         for idx, tid in enumerate(ent1['transcripts']):
             
             exons = ent1['exons'][idx]
+            if numpy.isnan(numpy.min(exons)):
+                continue 
             cds_exons = ent1['cds_exons'][idx]
 
             stop_codon = start_codon = ()
