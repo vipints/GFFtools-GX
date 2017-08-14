@@ -87,7 +87,7 @@ def writeBED(tinfo):
             score = ent1['transcript_score'][0] if ent1['transcript_score'].any() else score
 
             out_print = [ent1['chr'], 
-                        '%d' % int(ent1['start'])-1, 
+                        '%d' % (int(ent1['start'])-1), 
                         '%d' % int(ent1['stop']),
                         ent1['name'], 
                         str(score), 
