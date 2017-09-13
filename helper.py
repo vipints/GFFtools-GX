@@ -25,7 +25,7 @@ def init_gene():
             ('name2', numpy.dtype),
             ('strand', 'S2'), 
             ('score', 'S15'), 
-            ('chr', 'S15'), 
+            ('chr', 'S25'), 
             ('chr_num', numpy.dtype),
             ('paralogs', numpy.dtype),
             ('start', 'f8'),
